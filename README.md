@@ -29,10 +29,17 @@
 ### A typical top-level directory layout
 
     .
-    ├── build                   # Compiled files (alternatively `dist`)
-    ├── docs                    # Documentation files (alternatively `doc`)
-    ├── src                     # Source files (alternatively `lib` or `app`)
-    ├── test                    # Automated tests (alternatively `spec` or `tests`)
-    ├── tools                   # Tools and utilities
-    ├── LICENSE
+    ├── DeepDTNet/                   # Compiled files (alternatively `dist`)
+            ├── embedding/
+            ├── labels/
+                  ├── DCDB_deepdtnet.tsv
+                  └── C_DCDB_deepdtnet.tsv
+            ├── data/
+                  ├── matrix/
+                  └── raw/
+            ├── embedding.ipynb
+            ├── create_dataset.ipynb
+            └── train.ipynb
+    ├── MSI/                    # Documentation files (alternatively `doc`)
+    ├── labels/                     # Source files (alternatively `lib` or `app`)
     └── README.md
