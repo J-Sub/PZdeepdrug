@@ -35,5 +35,12 @@
     ├── ori_labels/                    # Original labels from DCDB, C_DCDB
             ├── DCDB_dual.tsv
             └── C_DCDB_dual.tsv
-    ├── create_labels.ipynb            # Notebook to create labels for each network
+    ├── raw_database/
+            ├── c_dcdb.sqlite
+            ├── dcdb_components_identifier.txt
+            └── dcdb.txt
+    ├── create_labels_deepdtnet.ipynb            # Notebook to create labels for DeepDTNet network
+    ├── create_labels_msi.ipynb                  # Notebook to create labels for MSI network
+    ├── create_labels_newmin.ipynb               # Notebook to create labels for NEWMIN network
+    ├── process_database.ipynb                   # Notebook to process raw_database files to ori_labels files
     └── README.md
