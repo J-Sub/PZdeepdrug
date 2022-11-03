@@ -8,6 +8,7 @@
                   ├── matrix/
                   ├── raw/
                   ├── embedding/
+                  ├── processed/
                   └── labels/
                         ├── DCDB_deepdtnet.tsv
                         └── C_DCDB_deepdtnet.tsv
@@ -18,6 +19,7 @@
     ├── MSI/                          # Code for MSI
             ├── data/
                   ├── embedding/
+                  ├── processed/
                   ├── labels/
                         ├── DCDB_msi.tsv
                         └── C_DCDB_msi.tsv
@@ -27,6 +29,7 @@
     ├── NEWMIN/                       # Code for NEWMIN
             ├── data/
                   ├── embedding/
+                  ├── processed/
                   ├── labels/
                         ├── DCDB_newmin.tsv
                         └── C_DCDB_newmin.tsv
