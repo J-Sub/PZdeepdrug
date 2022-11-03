@@ -23,6 +23,15 @@
             ├── embedding.ipynb
             ├── create_dataset.ipynb
             └── train.ipynb
+    ├── NEWMIN/                       # Code for NEWMIN
+            ├── embedding/
+            ├── labels/
+                  ├── DCDB_newmin.tsv
+                  └── C_DCDB_newmin.tsv
+            ├── data/
+            ├── embedding.ipynb
+            ├── create_dataset.ipynb
+            └── train.ipynb 
     ├── labels/                       # Original labels from DCDB, C_DCDB
             ├── DCDB_dual.tsv
             └── C_DCDB_dual.tsv
