@@ -2,8 +2,8 @@
 
 ### Directory layout
 .
-├── DeepDTNet/
-      ├── embedding/
+├── DeepDTNet/  
+      ├── embedding/  
       ├── labels/
             ├── DCDB_deepdtnet.tsv
             ├── C_DCDB_deepdtnet.tsv
