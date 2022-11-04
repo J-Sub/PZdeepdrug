@@ -12,3 +12,13 @@
                         └── C_DCDB_deepdtnet.tsv
             ├── create_embedding.ipynb             # drug embedding vector 만드는 notebook file
             └── train.ipynb                        # dataset을 구성하고 학습하는 notebook file
+
+~~~python
+# Steps for creating drug embedding vector
+1. create_embedding.ipynb
+2. run SDAE.py
+   
+# Example for run SDAE.py   
+python SDAE.py --matrix_dir ./data/matrix/PPMI_matrix_BiologicalProcess.txt --hidden_size 12
+python SDAE.py --matrix_dir ./data/matrix/PPMI_matrix_BiologicalProcess.txt --hidden_size 3
+~~~
