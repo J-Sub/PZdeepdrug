@@ -12,6 +12,7 @@
                   └── labels/
                         ├── DCDB_deepdtnet.tsv
                         └── C_DCDB_deepdtnet.tsv
+            ├── SDAE.py
             ├── create_embedding.ipynb
             ├── train.ipynb
             └── README.md
@@ -19,9 +20,11 @@
             ├── data/
                   ├── embedding/
                   ├── processed/
+                  ├── raw/
                   ├── labels/
                         ├── DCDB_msi.tsv
                         └── C_DCDB_msi.tsv
+            ├── load_data.py
             ├── create_embedding.ipynb
             ├── train.ipynb
             └── README.md

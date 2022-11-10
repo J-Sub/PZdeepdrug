@@ -10,6 +10,7 @@
                   └── labels/                      # DeepDTNet의 drug들의 combination label
                         ├── DCDB_deepdtnet.tsv
                         └── C_DCDB_deepdtnet.tsv
+            ├── SDAE.py                            #
             ├── create_embedding.ipynb             # drug embedding vector 만드는 notebook file
             └── train.ipynb                        # dataset을 구성하고 학습하는 notebook file
 
