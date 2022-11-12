@@ -1,0 +1,756 @@
+drug1	drug1_name	drug2	drug2_name	common_disease	common_disease_name
+DB00484	brimonidine	DB00373	timolol	C0017601	glaucoma
+DB00484	brimonidine	DB00373	timolol	C0017612	Glaucoma, Open-Angle
+DB00484	brimonidine	DB00373	timolol	C0028840	ocular hypertension
+DB00443	betamethasone	DB02300	calcipotriol	C0033860	psoriasis
+DB00983	formoterol	DB01222	budesonide	C0004096	asthma
+DB00178	ramipril	DB00796	candesartan-cilextil	C0020538	Hypertensive disease
+DB00178	ramipril	DB00796	candesartan-cilextil	C0018802	congestive heart failure
+DB01248	docetaxel	DB00762	irinotecan	C0038356	Stomach Neoplasms
+DB01248	docetaxel	DB00762	irinotecan	C0030297	Pancreatic Neoplasm
+DB01248	docetaxel	DB00762	irinotecan	C1458155	Mammary Neoplasms
+DB01248	docetaxel	DB00762	irinotecan	C0007131	Non-Small Cell Lung Carcinoma
+DB00515	cisplatin	DB00441	gemcitabine	C1140680	Malignant Neoplasm Of Ovary
+DB00008	Peginterferon alfa-2a	DB00811	ribavirin	C0524910	Hepatitis C, Chronic
+DB00313	Valproic Acid	DB00252	phenytoin	C0036572	seizures
+DB00313	Valproic Acid	DB00252	phenytoin	C0014544	epilepsy
+DB00313	Valproic Acid	DB00593	ethosuximide	C0014553	Absence Epilepsy
+DB00313	Valproic Acid	DB00593	ethosuximide	C0014544	epilepsy
+DB00445	epirubicin	DB00072	trastuzumab	C1458155	Mammary Neoplasms
+DB00072	trastuzumab	DB00997	doxorubicin	C1458155	Mammary Neoplasms
+DB00361	vinorelbine	DB00072	trastuzumab	C1458155	Mammary Neoplasms
+DB00531	cyclophosphamide	DB00072	trastuzumab	C1458155	Mammary Neoplasms
+DB00654	latanoprost	DB00373	timolol	C0017601	glaucoma
+DB00654	latanoprost	DB00373	timolol	C0028840	ocular hypertension
+DB00654	latanoprost	DB00373	timolol	C0017612	Glaucoma, Open-Angle
+DB01015	sulfamethoxazole	DB00440	trimethoprim	C0032285	pneumonia
+DB01194	brinzolamide	DB00373	timolol	C0017601	glaucoma
+DB01194	brinzolamide	DB00373	timolol	C0028840	ocular hypertension
+DB01194	brinzolamide	DB00373	timolol	C0017612	Glaucoma, Open-Angle
+DB00388	phenylephrine	DB00979	cyclopentolate	C0026961	Mydriasis
+DB00515	cisplatin	DB01030	topotecan	C0262584	Carcinoma, Small Cell
+DB00515	cisplatin	DB01030	topotecan	C1140680	Malignant Neoplasm Of Ovary
+DB00515	cisplatin	DB01030	topotecan	C0919267	Ovarian Neoplasm
+DB01101	capecitabine	DB01248	docetaxel	C1458155	Mammary Neoplasms
+DB00586	diclofenac	DB00316	paracetamol	C0030193	Pain
+DB00586	diclofenac	DB00316	paracetamol	C0013390	Dysmenorrhea
+DB00515	cisplatin	DB00531	cyclophosphamide	C0026764	multiple myeloma
+DB00515	cisplatin	DB00531	cyclophosphamide	C0919267	Ovarian Neoplasm
+DB00515	cisplatin	DB00531	cyclophosphamide	C0019829	Hodgkin's lymphoma
+DB00515	cisplatin	DB00531	cyclophosphamide	C0039590	Testicular Neoplasms
+DB00515	cisplatin	DB00531	cyclophosphamide	C1458155	Mammary Neoplasms
+DB00515	cisplatin	DB00531	cyclophosphamide	C0027819	neuroblastoma
+DB00405	Dexbrompheniramine	DB00852	Pseudoephedrine	C0035457	Rhinitis, Allergic, Perennial
+DB00405	Dexbrompheniramine	DB00852	Pseudoephedrine	C2607914	Allergic Rhinitis (Disorder)
+DB00405	Dexbrompheniramine	DB00852	Pseudoephedrine	C0037199	sinusitis
+DB00405	Dexbrompheniramine	DB00852	Pseudoephedrine	C0018621	Hay Fever
+DB00051	Adalimumab	DB00563	methotrexate	C0003873	rheumatoid arthritis
+DB00850	perphenazine	DB00321	amitriptyline	C0338908	Mixed anxiety and depressive disorder
+DB00277	Theophylline	DB01223	Aminophylline	C0746102	Chronic Lung Disease
+DB00277	Theophylline	DB01223	Aminophylline	C0008677	Bronchitis, Chronic
+DB00277	Theophylline	DB01223	Aminophylline	C0003578	Apnea
+DB00277	Theophylline	DB01223	Aminophylline	C0024115	Lung diseases
+DB00277	Theophylline	DB01223	Aminophylline	C0428977	bradycardia
+DB00277	Theophylline	DB01223	Aminophylline	C0004096	asthma
+DB00277	Theophylline	DB01223	Aminophylline	C0034067	Pulmonary Emphysema
+DB00790	perindopril	DB00808	indapamide	C0020538	Hypertensive disease
+DB00790	perindopril	DB00808	indapamide	C0018802	congestive heart failure
+DB00317	gefitinib	DB00762	irinotecan	C0007131	Non-Small Cell Lung Carcinoma
+DB00631	clofarabine	DB00987	cytarabine	C0023449	Acute Lymphocytic Leukemia
+DB00530	erlotinib	DB00642	pemetrexed	C0007131	Non-Small Cell Lung Carcinoma
+DB04876	vildagliptin	DB01132	pioglitazone	C0020456	hyperglycemia
+DB04876	vildagliptin	DB01132	pioglitazone	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB04876	vildagliptin	DB01132	pioglitazone	C0011849	diabetes mellitus
+DB00381	amlodipine	DB00790	perindopril	C0020538	Hypertensive disease
+DB00381	amlodipine	DB00790	perindopril	C1956346	coronary artery disease (CAD)
+DB00480	lenalidomide	DB01234	dexamethasone	C0026764	multiple myeloma
+DB00480	lenalidomide	DB01234	dexamethasone	C0002871	anemia
+DB00966	telmisartan	DB00381	amlodipine	C0020538	Hypertensive disease
+DB00966	telmisartan	DB00381	amlodipine	C0038454	stroke
+DB00455	loratadine	DB00471	montelukast	C0035457	Rhinitis, Allergic, Perennial
+DB00455	loratadine	DB00471	montelukast	C2607914	Allergic Rhinitis (Disorder)
+DB00584	enalapril	DB00528	lercanidipine	C0020538	Hypertensive disease
+DB00072	trastuzumab	DB00675	tamoxifen	C1458155	Mammary Neoplasms
+DB08799	antazoline	DB01620	pheniramine	C0033774	Pruritus
+DB08799	antazoline	DB01620	pheniramine	C0020517	Hypersensitivity
+DB08799	antazoline	DB01620	pheniramine	C0042109	urticaria
+DB08799	antazoline	DB01620	pheniramine	C2607914	Allergic Rhinitis (Disorder)
+DB08799	antazoline	DB01620	pheniramine	C0343065	Symptomatic Dermographism
+DB08799	antazoline	DB01620	pheniramine	C0027424	Nasal congestion (finding)
+DB00945	aspirin	DB00975	dipyridamole	C0040053	thrombosis
+DB01241	gemfibrozil	DB00439	DB00439	C0020443	hypercholesterolemia
+DB01241	gemfibrozil	DB00439	DB00439	C0020476	Hyperlipoproteinemias
+DB01241	gemfibrozil	DB00439	DB00439	C0020473	hyperlipidemia
+DB00515	cisplatin	DB00072	trastuzumab	C1458155	Mammary Neoplasms
+DB01156	bupropion	DB00704	naltrexone	C0028754	obesity
+DB01229	paclitaxel	DB00531	cyclophosphamide	C0024121	Lung Neoplasms
+DB01229	paclitaxel	DB00531	cyclophosphamide	C0678222	Breast Carcinoma
+DB01229	paclitaxel	DB00531	cyclophosphamide	C1458155	Mammary Neoplasms
+DB01229	paclitaxel	DB00531	cyclophosphamide	C0919267	Ovarian Neoplasm
+DB00983	formoterol	DB00394	beclomethasone-dipropionate	C0004096	asthma
+DB00905	bimatoprost	DB00373	timolol	C0017601	glaucoma
+DB00905	bimatoprost	DB00373	timolol	C0017612	Glaucoma, Open-Angle
+DB00905	bimatoprost	DB00373	timolol	C0028840	ocular hypertension
+DB00996	gabapentin	DB00906	tiagabine	C0036572	seizures
+DB00996	gabapentin	DB00906	tiagabine	C0014544	epilepsy
+DB00273	topiramate	DB00555	lamotrigine	C0234974	Simple Partial Seizures
+DB00273	topiramate	DB00555	lamotrigine	C0014544	epilepsy
+DB00273	topiramate	DB00555	lamotrigine	C0238111	Lennox-Gastaut Syndrome
+DB00273	topiramate	DB00564	carbamazepine	C0234974	Simple Partial Seizures
+DB00273	topiramate	DB00564	carbamazepine	C0238111	Lennox-Gastaut Syndrome
+DB00273	topiramate	DB00564	carbamazepine	C0014549	Tonic-Clonic Epilepsy
+DB00273	topiramate	DB00564	carbamazepine	C0014544	epilepsy
+DB00313	Valproic Acid	DB00273	topiramate	C0014544	epilepsy
+DB00776	oxcarbazepine	DB00273	topiramate	C0234974	Simple Partial Seizures
+DB00776	oxcarbazepine	DB00273	topiramate	C0014544	epilepsy
+DB00273	topiramate	DB01202	levetiracetam	C0234974	Simple Partial Seizures
+DB00273	topiramate	DB01202	levetiracetam	C0014544	epilepsy
+DB00564	carbamazepine	DB00555	lamotrigine	C0234974	Simple Partial Seizures
+DB00564	carbamazepine	DB00555	lamotrigine	C0494475	Tonic - clonic seizures
+DB00564	carbamazepine	DB00555	lamotrigine	C0014544	epilepsy
+DB00564	carbamazepine	DB00555	lamotrigine	C0238111	Lennox-Gastaut Syndrome
+DB01276	exenatide	DB00331	metformin	C0020456	hyperglycemia
+DB01276	exenatide	DB00331	metformin	C0011849	diabetes mellitus
+DB00026	Anakinra	DB01234	dexamethasone	C0003873	rheumatoid arthritis
+DB00612	bisoprolol	DB00966	telmisartan	C0020538	Hypertensive disease
+DB00612	bisoprolol	DB00966	telmisartan	C0018802	congestive heart failure
+DB00209	trospium	DB01591	solifenacin-succinate	C0085606	Urgency of micturition
+DB00209	trospium	DB01591	solifenacin-succinate	C0878773	Overactive Bladder
+DB00209	trospium	DB01591	solifenacin-succinate	C0042024	urinary incontinence
+DB00209	trospium	DB01591	solifenacin-succinate	C0042023	Increased frequency of micturition
+DB01194	brinzolamide	DB00654	latanoprost	C0017601	glaucoma
+DB01194	brinzolamide	DB00654	latanoprost	C0028840	ocular hypertension
+DB01194	brinzolamide	DB00654	latanoprost	C0017612	Glaucoma, Open-Angle
+DB00755	tretinoin	DB01169	Arsenic trioxide	C0023487	acute promyelocytic leukemia (APL)
+DB00999	hydrochlorothiazide	DB00542	benazepril	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00542	benazepril	C0018802	congestive heart failure
+DB00381	amlodipine	DB01076	atorvastatin	C0002962	angina pectoris
+DB00381	amlodipine	DB01076	atorvastatin	C0020538	Hypertensive disease
+DB00381	amlodipine	DB01076	atorvastatin	C0038454	stroke
+DB00999	hydrochlorothiazide	DB00492	fosinopril	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00492	fosinopril	C0018802	congestive heart failure
+DB00725	Homatropine Methylbromide	DB00956	Hydrocodone	C0010200	Coughing
+DB00381	amlodipine	DB00542	benazepril	C0020538	Hypertensive disease
+DB00381	amlodipine	DB00275	olmesartan	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00594	amiloride	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00594	amiloride	C0018802	congestive heart failure
+DB00999	hydrochlorothiazide	DB00594	amiloride	C0013604	edema
+DB00436	bendroflumethiazide	DB01203	nadolol	C0020538	Hypertensive disease
+DB00436	bendroflumethiazide	DB01203	nadolol	C0018802	congestive heart failure
+DB00515	cisplatin	DB00762	irinotecan	C0038356	Stomach Neoplasms
+DB00515	cisplatin	DB00762	irinotecan	C1458155	Mammary Neoplasms
+DB00539	toremifene	DB01229	paclitaxel	C1458155	Mammary Neoplasms
+DB00399	zoledronic-acid	DB00997	doxorubicin	C0026764	multiple myeloma
+DB00722	lisinopril	DB00999	hydrochlorothiazide	C0020538	Hypertensive disease
+DB00722	lisinopril	DB00999	hydrochlorothiazide	C0018802	congestive heart failure
+DB00678	losartan	DB00999	hydrochlorothiazide	C0020538	Hypertensive disease
+DB00678	losartan	DB00999	hydrochlorothiazide	C0018802	congestive heart failure
+DB00999	hydrochlorothiazide	DB00968	methyldopa	C0020538	Hypertensive disease
+DB00264	metoprolol	DB00999	hydrochlorothiazide	C0020538	Hypertensive disease
+DB00381	amlodipine	DB00177	valsartan	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB01029	irbesartan	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB01029	irbesartan	C0018802	congestive heart failure
+DB00999	hydrochlorothiazide	DB00275	olmesartan	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00275	olmesartan	C0018802	congestive heart failure
+DB00999	hydrochlorothiazide	DB00571	propranolol	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00571	propranolol	C0018802	congestive heart failure
+DB00881	quinapril	DB00999	hydrochlorothiazide	C0020538	Hypertensive disease
+DB00881	quinapril	DB00999	hydrochlorothiazide	C0018802	congestive heart failure
+DB00537	ciprofloxacin	DB00440	trimethoprim	C0037199	sinusitis
+DB00415	ampicillin	DB00798	Gentamicins	C0014836	Escherichia coli Infections
+DB00415	ampicillin	DB00798	Gentamicins	C0008311	Cholangitis
+DB01026	ketoconazole	DB01013	clobetasol-propionate	C0036508	seborrheic dermatitis
+DB01101	capecitabine	DB00762	irinotecan	C1458155	Mammary Neoplasms
+DB01101	capecitabine	DB00762	irinotecan	C1527249	colorectal cancer
+DB01225	Enoxaparin	DB00682	warfarin	C0149871	deep vein thrombosis (DVT)
+DB00951	Isoniazid	DB01201	rifapentine	C0041296	tuberculosis
+DB06335	saxagliptin	DB00412	Rosiglitazone	C0020456	hyperglycemia
+DB06335	saxagliptin	DB00412	Rosiglitazone	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB00515	cisplatin	DB00997	doxorubicin	C0024305	non-Hodgkin lymphoma (NHL)
+DB00515	cisplatin	DB00997	doxorubicin	C0005695	Bladder Neoplasm
+DB00515	cisplatin	DB00997	doxorubicin	C0026764	multiple myeloma
+DB00515	cisplatin	DB00997	doxorubicin	C1140680	Malignant Neoplasm Of Ovary
+DB00515	cisplatin	DB00997	doxorubicin	C0019829	Hodgkin's lymphoma
+DB00515	cisplatin	DB00997	doxorubicin	C0027819	neuroblastoma
+DB00515	cisplatin	DB00997	doxorubicin	C1458155	Mammary Neoplasms
+DB00515	cisplatin	DB00997	doxorubicin	C0919267	Ovarian Neoplasm
+DB00851	dacarbazine	DB00853	temozolomide	C0025202	melanoma
+DB02638	terlipressin	DB00368	norepinephrine	C0020649	hypotension
+DB01229	paclitaxel	DB01101	capecitabine	C1458155	Mammary Neoplasms
+DB05294	vandetanib	DB01248	docetaxel	C0007131	Non-Small Cell Lung Carcinoma
+DB00746	deferoxamine-mesylate	DB08826	deferiprone	C0282193	iron overload
+DB00973	ezetimibe	DB01076	atorvastatin	C0020443	hypercholesterolemia
+DB00973	ezetimibe	DB01076	atorvastatin	C0020474	Hyperlipidemia, Familial Combined
+DB00973	ezetimibe	DB01076	atorvastatin	C0020473	hyperlipidemia
+DB00973	ezetimibe	DB01076	atorvastatin	C0342881	Familial hypercholesterolemia - homozygous
+DB01274	Arformoterol	DB01409	tiotropium	C0024117	Chronic Obstructive Airway Disease
+DB01274	Arformoterol	DB01409	tiotropium	C0004096	asthma
+DB01274	Arformoterol	DB01409	tiotropium	C0008677	Bronchitis, Chronic
+DB01274	Arformoterol	DB01409	tiotropium	C0034067	Pulmonary Emphysema
+DB00544	5-fluorouracil	DB00650	leucovorin	C1527249	colorectal cancer
+DB00594	amiloride	DB00310	chlorthalidone	C0020538	Hypertensive disease
+DB00594	amiloride	DB00310	chlorthalidone	C0018802	congestive heart failure
+DB00594	amiloride	DB00310	chlorthalidone	C0013604	edema
+DB00015	Reteplase	DB00054	Abciximab	C0040053	thrombosis
+DB00072	trastuzumab	DB01248	docetaxel	C1458155	Mammary Neoplasms
+DB00959	methylprednisolone	DB00060	INTERFERON BETA-1A,RECOMBINANT	C0026948	Mycosis Fungoides
+DB00313	Valproic Acid	DB00555	lamotrigine	C0014544	epilepsy
+DB00313	Valproic Acid	DB00996	gabapentin	C0036572	seizures
+DB00313	Valproic Acid	DB00996	gabapentin	C0014544	epilepsy
+DB00564	carbamazepine	DB00996	gabapentin	C0035258	restless leg syndrome
+DB00564	carbamazepine	DB00996	gabapentin	C0036572	seizures
+DB00564	carbamazepine	DB00996	gabapentin	C0014544	epilepsy
+DB00950	fexofenadine	DB00501	cimetidine	C0042109	urticaria
+DB00641	simvastatin	DB01039	fenofibrate	C0020474	Hyperlipidemia, Familial Combined
+DB00641	simvastatin	DB01039	fenofibrate	C0473527	Hypoalphalipoproteinemias
+DB00641	simvastatin	DB01039	fenofibrate	C0020443	hypercholesterolemia
+DB00641	simvastatin	DB01039	fenofibrate	C0020476	Hyperlipoproteinemias
+DB00641	simvastatin	DB01039	fenofibrate	C0020473	hyperlipidemia
+DB00641	simvastatin	DB01039	fenofibrate	C0020557	hypertriglyceridemia
+DB00776	oxcarbazepine	DB01202	levetiracetam	C0234974	Simple Partial Seizures
+DB00776	oxcarbazepine	DB01202	levetiracetam	C0036572	seizures
+DB00776	oxcarbazepine	DB01202	levetiracetam	C0014544	epilepsy
+DB00203	sildenafil	DB01088	iloprost	C2973725	pulmonary arterial hypertension (PAH)
+DB00776	oxcarbazepine	DB00996	gabapentin	C0036572	seizures
+DB00776	oxcarbazepine	DB00996	gabapentin	C0014544	epilepsy
+DB01075	diphenhydramine	DB01050	ibuprofen	C0018681	headache
+DB00338	omeprazole	DB01060	amoxicillin	C0013295	Duodenal Ulcer
+DB00515	cisplatin	DB00987	cytarabine	C0024305	non-Hodgkin lymphoma (NHL)
+DB01016	glyburide	DB06203	alogliptin	C0020456	hyperglycemia
+DB01016	glyburide	DB06203	alogliptin	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB01016	glyburide	DB06203	alogliptin	C0011849	diabetes mellitus
+DB00776	oxcarbazepine	DB00555	lamotrigine	C0234974	Simple Partial Seizures
+DB00776	oxcarbazepine	DB00555	lamotrigine	C0014544	epilepsy
+DB01241	gemfibrozil	DB01098	rosuvastatin	C0020443	hypercholesterolemia
+DB01241	gemfibrozil	DB01098	rosuvastatin	C0020473	hyperlipidemia
+DB01241	gemfibrozil	DB01098	rosuvastatin	C0020557	hypertriglyceridemia
+DB01229	paclitaxel	DB00997	doxorubicin	C1140680	Malignant Neoplasm Of Ovary
+DB01229	paclitaxel	DB00997	doxorubicin	C0036220	Kaposi sarcoma
+DB01229	paclitaxel	DB00997	doxorubicin	C0678222	Breast Carcinoma
+DB01229	paclitaxel	DB00997	doxorubicin	C1458155	Mammary Neoplasms
+DB01229	paclitaxel	DB00997	doxorubicin	C0919267	Ovarian Neoplasm
+DB01114	chlorphenamine	DB00852	Pseudoephedrine	C0035457	Rhinitis, Allergic, Perennial
+DB01114	chlorphenamine	DB00852	Pseudoephedrine	C2607914	Allergic Rhinitis (Disorder)
+DB01114	chlorphenamine	DB00852	Pseudoephedrine	C0035455	Rhinitis
+DB01114	chlorphenamine	DB00852	Pseudoephedrine	C0004096	asthma
+DB01114	chlorphenamine	DB00852	Pseudoephedrine	C0027424	Nasal congestion (finding)
+DB01114	chlorphenamine	DB00852	Pseudoephedrine	C0018621	Hay Fever
+DB01114	chlorphenamine	DB00956	Hydrocodone	C2607914	Allergic Rhinitis (Disorder)
+DB01114	chlorphenamine	DB00956	Hydrocodone	C0027424	Nasal congestion (finding)
+DB01114	chlorphenamine	DB00956	Hydrocodone	C0035455	Rhinitis
+DB00950	fexofenadine	DB00852	Pseudoephedrine	C0035457	Rhinitis, Allergic, Perennial
+DB00950	fexofenadine	DB00852	Pseudoephedrine	C2607914	Allergic Rhinitis (Disorder)
+DB00950	fexofenadine	DB00852	Pseudoephedrine	C0018621	Hay Fever
+DB00967	desloratadine	DB00852	Pseudoephedrine	C0035457	Rhinitis, Allergic, Perennial
+DB00967	desloratadine	DB00852	Pseudoephedrine	C2607914	Allergic Rhinitis (Disorder)
+DB00967	desloratadine	DB00852	Pseudoephedrine	C0027424	Nasal congestion (finding)
+DB00967	desloratadine	DB00852	Pseudoephedrine	C0018621	Hay Fever
+DB01032	probenecid	DB01394	colchicine	C0018099	gout
+DB00480	lenalidomide	DB00188	bortezomib	C0026764	multiple myeloma
+DB00480	lenalidomide	DB00188	bortezomib	C0334634	Malignant lymphoma, lymphocytic, intermediate differentiation, diffuse
+DB00515	cisplatin	DB00853	temozolomide	C0004114	astrocytoma
+DB00852	Pseudoephedrine	DB00427	triprolidine	C0035457	Rhinitis, Allergic, Perennial
+DB00852	Pseudoephedrine	DB00427	triprolidine	C2607914	Allergic Rhinitis (Disorder)
+DB00852	Pseudoephedrine	DB00427	triprolidine	C0018621	Hay Fever
+DB00999	hydrochlorothiazide	DB01197	captopril	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB01197	captopril	C0018802	congestive heart failure
+DB00999	hydrochlorothiazide	DB01197	captopril	C0013604	edema
+DB00999	hydrochlorothiazide	DB00796	candesartan-cilextil	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00796	candesartan-cilextil	C0018802	congestive heart failure
+DB00395	carisoprodol	DB00945	aspirin	C0004604	Back Pain
+DB00669	sumatriptan	DB00788	naproxen	C0149931	Migraine Disorders
+DB00966	telmisartan	DB00999	hydrochlorothiazide	C0020538	Hypertensive disease
+DB00966	telmisartan	DB00999	hydrochlorothiazide	C0018802	congestive heart failure
+DB00421	spironolactone	DB00999	hydrochlorothiazide	C0020538	Hypertensive disease
+DB00421	spironolactone	DB00999	hydrochlorothiazide	C0018802	congestive heart failure
+DB00421	spironolactone	DB00999	hydrochlorothiazide	C0013604	edema
+DB00421	spironolactone	DB00999	hydrochlorothiazide	C0027726	nephrotic syndrome
+DB00999	hydrochlorothiazide	DB00177	valsartan	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00177	valsartan	C0018802	congestive heart failure
+DB00999	hydrochlorothiazide	DB00384	triamterene	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00384	triamterene	C0018802	congestive heart failure
+DB00999	hydrochlorothiazide	DB00384	triamterene	C0013604	edema
+DB00999	hydrochlorothiazide	DB00384	triamterene	C0027726	nephrotic syndrome
+DB00584	enalapril	DB01023	felodipine	C0085580	Essential Hypertension
+DB00584	enalapril	DB01023	felodipine	C0020538	Hypertensive disease
+DB00661	verapamil	DB00519	trandolapril	C0027051	Myocardial Infarction
+DB00661	verapamil	DB00519	trandolapril	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00876	eprosartan	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00876	eprosartan	C0018802	congestive heart failure
+DB00584	enalapril	DB00999	hydrochlorothiazide	C0020538	Hypertensive disease
+DB00584	enalapril	DB00999	hydrochlorothiazide	C0018802	congestive heart failure
+DB00584	enalapril	DB00999	hydrochlorothiazide	C0013604	edema
+DB00335	atenolol-(+/-)	DB00310	chlorthalidone	C0020538	Hypertensive disease
+DB00335	atenolol-(+/-)	DB00310	chlorthalidone	C0018802	congestive heart failure
+DB00696	ergotamine	DB00201	caffeine	C0149931	Migraine Disorders
+DB01050	ibuprofen	DB00956	Hydrocodone	C0030193	Pain
+DB00316	paracetamol	DB01009	ketoprofen	C0030193	Pain
+DB00316	paracetamol	DB01009	ketoprofen	C0013390	Dysmenorrhea
+DB00475	Chlordiazepoxide	DB00321	amitriptyline	C0338908	Mixed anxiety and depressive disorder
+DB01001	albuterol	DB00332	ipratropium	C0024117	Chronic Obstructive Airway Disease
+DB01001	albuterol	DB00332	ipratropium	C0004096	asthma
+DB01001	albuterol	DB00332	ipratropium	C0008677	Bronchitis, Chronic
+DB00455	loratadine	DB00852	Pseudoephedrine	C0035457	Rhinitis, Allergic, Perennial
+DB00455	loratadine	DB00852	Pseudoephedrine	C2607914	Allergic Rhinitis (Disorder)
+DB00455	loratadine	DB00852	Pseudoephedrine	C0027424	Nasal congestion (finding)
+DB00455	loratadine	DB00852	Pseudoephedrine	C0018621	Hay Fever
+DB01183	naloxone	DB00652	Pentazocine	C0030193	Pain
+DB00869	dorzolamide	DB00373	timolol	C0017601	glaucoma
+DB00869	dorzolamide	DB00373	timolol	C0017612	Glaucoma, Open-Angle
+DB00869	dorzolamide	DB00373	timolol	C0028840	ocular hypertension
+DB00612	bisoprolol	DB00999	hydrochlorothiazide	C0020538	Hypertensive disease
+DB00612	bisoprolol	DB00999	hydrochlorothiazide	C0018802	congestive heart failure
+DB00073	Rituximab	DB01073	fludarabine	C0024305	non-Hodgkin lymphoma (NHL)
+DB00073	Rituximab	DB01073	fludarabine	C0023434	chronic lymphocytic leukemia (CLL)
+DB00627	niacin	DB00227	lovastatin	C0020443	hypercholesterolemia
+DB00627	niacin	DB00227	lovastatin	C0020474	Hyperlipidemia, Familial Combined
+DB00627	niacin	DB00227	lovastatin	C0020473	hyperlipidemia
+DB00627	niacin	DB00227	lovastatin	C0020557	hypertriglyceridemia
+DB00316	paracetamol	DB00241	butalbital	C0149931	Migraine Disorders
+DB01045	rifampin	DB00951	Isoniazid	C0041296	tuberculosis
+DB01132	pioglitazone	DB00331	metformin	C0020456	hyperglycemia
+DB01132	pioglitazone	DB00331	metformin	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB01132	pioglitazone	DB00331	metformin	C0011849	diabetes mellitus
+DB00912	repaglinide	DB00331	metformin	C0020456	hyperglycemia
+DB00912	repaglinide	DB00331	metformin	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB00912	repaglinide	DB00331	metformin	C0011849	diabetes mellitus
+DB00627	niacin	DB00641	simvastatin	C0020443	hypercholesterolemia
+DB00627	niacin	DB00641	simvastatin	C0020474	Hyperlipidemia, Familial Combined
+DB00627	niacin	DB00641	simvastatin	C0020473	hyperlipidemia
+DB00627	niacin	DB00641	simvastatin	C0020557	hypertriglyceridemia
+DB01229	paclitaxel	DB00072	trastuzumab	C1458155	Mammary Neoplasms
+DB00318	Codeine	DB00316	paracetamol	C2607914	Allergic Rhinitis (Disorder)
+DB00318	Codeine	DB00316	paracetamol	C0030193	Pain
+DB00318	Codeine	DB00316	paracetamol	C0015967	fever
+DB00316	paracetamol	DB00647	Dextropropoxyphene	C0030193	Pain
+DB00316	paracetamol	DB00652	Pentazocine	C0030193	Pain
+DB01016	glyburide	DB00331	metformin	C0020456	hyperglycemia
+DB01016	glyburide	DB00331	metformin	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB01016	glyburide	DB00331	metformin	C0011849	diabetes mellitus
+DB01067	glipizide	DB00331	metformin	C0020456	hyperglycemia
+DB01067	glipizide	DB00331	metformin	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB01067	glipizide	DB00331	metformin	C0011849	diabetes mellitus
+DB00316	paracetamol	DB00193	tramadol	C0030193	Pain
+DB00412	Rosiglitazone	DB00222	glimepiride	C0020456	hyperglycemia
+DB00412	Rosiglitazone	DB00222	glimepiride	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB01132	pioglitazone	DB00222	glimepiride	C0020456	hyperglycemia
+DB01132	pioglitazone	DB00222	glimepiride	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB01132	pioglitazone	DB00222	glimepiride	C0011849	diabetes mellitus
+DB01261	sitagliptin	DB00331	metformin	C0020456	hyperglycemia
+DB01261	sitagliptin	DB00331	metformin	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB01261	sitagliptin	DB00331	metformin	C0011849	diabetes mellitus
+DB00412	Rosiglitazone	DB00331	metformin	C0020456	hyperglycemia
+DB00412	Rosiglitazone	DB00331	metformin	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB00190	carbidopa	DB01235	levodopa	C0242422	Parkinsonian Disorders
+DB00190	carbidopa	DB01235	levodopa	C0030567	Parkinson's Disease
+DB00682	warfarin	DB00908	quinidine	C0004239	Atrial Flutter
+DB00682	warfarin	DB00908	quinidine	C0004238	atrial fibrillation (AF)
+DB00341	cetirizine	DB00852	Pseudoephedrine	C0035457	Rhinitis, Allergic, Perennial
+DB00341	cetirizine	DB00852	Pseudoephedrine	C2607914	Allergic Rhinitis (Disorder)
+DB00341	cetirizine	DB00852	Pseudoephedrine	C0027424	Nasal congestion (finding)
+DB00341	cetirizine	DB00852	Pseudoephedrine	C0018621	Hay Fever
+DB00515	cisplatin	DB00188	bortezomib	C0026764	multiple myeloma
+DB06203	alogliptin	DB01132	pioglitazone	C0020456	hyperglycemia
+DB06203	alogliptin	DB01132	pioglitazone	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB06203	alogliptin	DB01132	pioglitazone	C0011849	diabetes mellitus
+DB00388	phenylephrine	DB01069	promethazine	C0018621	Hay Fever
+DB00860	prednisolone	DB00798	Gentamicins	C0010930	Dacryocystitis
+DB00334	olanzapine	DB00472	fluoxetine	C1269683	Major Depressive Disorder
+DB00334	olanzapine	DB00472	fluoxetine	C0005586	bipolar disorder
+DB00334	olanzapine	DB00472	fluoxetine	C0005587	Depression, Bipolar
+DB00588	fluticasone propionate	DB00938	salmeterol	C0004096	asthma
+DB00588	fluticasone propionate	DB00938	salmeterol	C0034067	Pulmonary Emphysema
+DB00973	ezetimibe	DB00641	simvastatin	C0020443	hypercholesterolemia
+DB00973	ezetimibe	DB00641	simvastatin	C0020474	Hyperlipidemia, Familial Combined
+DB00973	ezetimibe	DB00641	simvastatin	C0020473	hyperlipidemia
+DB00973	ezetimibe	DB00641	simvastatin	C0342881	Familial hypercholesterolemia - homozygous
+DB00977	ethinyl-estradiol	DB00823	ethynodiol-diacetate	C0020619	hypogonadism
+DB01357	mestranol	DB00717	norethindrone	C0014175	endometriosis
+DB01357	mestranol	DB00717	norethindrone	C0271578	Female Hypogonadism Syndrome
+DB01357	mestranol	DB00717	norethindrone	C0025323	Menorrhagia
+DB00783	estradiol	DB00367	levonorgestrel	C0025323	Menorrhagia
+DB00668	epinephrine	DB00281	lidocaine	C0042514	ventricular tachycardia (VT)
+DB00668	epinephrine	DB00281	lidocaine	C0019080	hemorrhage
+DB00668	epinephrine	DB00281	lidocaine	C0042510	ventricular fibrillation (VF)
+DB06203	alogliptin	DB00030	insulin human	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB06203	alogliptin	DB00030	insulin human	C0011849	diabetes mellitus
+DB01029	irbesartan	DB01023	felodipine	C0020538	Hypertensive disease
+DB08907	canagliflozin	DB00331	metformin	C0020456	hyperglycemia
+DB08907	canagliflozin	DB00331	metformin	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB08907	canagliflozin	DB00331	metformin	C0011849	diabetes mellitus
+DB01242	clomipramine	DB00472	fluoxetine	C0028768	obsessive compulsive disorder (OCD)
+DB01248	docetaxel	DB00317	gefitinib	C0007131	Non-Small Cell Lung Carcinoma
+DB00472	fluoxetine	DB01224	quetiapine	C0005586	bipolar disorder
+DB00472	fluoxetine	DB01224	quetiapine	C0005587	Depression, Bipolar
+DB00912	repaglinide	DB01306	insulin aspart, biphasic isophane [injection]	C0011849	diabetes mellitus
+DB06655	liraglutide	DB00331	metformin	C0020456	hyperglycemia
+DB06655	liraglutide	DB00331	metformin	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB06655	liraglutide	DB00331	metformin	C0011849	diabetes mellitus
+DB00203	sildenafil	DB00820	tadalafil	C0242350	erectile dysfunction
+DB01409	tiotropium	DB05039	indacaterol	C0024117	Chronic Obstructive Airway Disease
+DB01409	tiotropium	DB05039	indacaterol	C0008677	Bronchitis, Chronic
+DB01409	tiotropium	DB05039	indacaterol	C0034067	Pulmonary Emphysema
+DB00654	latanoprost	DB00484	brimonidine	C0017601	glaucoma
+DB00654	latanoprost	DB00484	brimonidine	C0017612	Glaucoma, Open-Angle
+DB00654	latanoprost	DB00484	brimonidine	C0028840	ocular hypertension
+DB00398	sorafenib	DB00544	5-fluorouracil	C0007134	renal cell carcinoma (RCC)
+DB00997	doxorubicin	DB00188	bortezomib	C0026764	multiple myeloma
+DB08816	ticagrelor	DB00945	aspirin	C0027051	Myocardial Infarction
+DB08816	ticagrelor	DB00945	aspirin	C0040053	thrombosis
+DB00563	methotrexate	DB06674	golimumab	C0003873	rheumatoid arthritis
+DB00531	cyclophosphamide	DB01101	capecitabine	C1458155	Mammary Neoplasms
+DB00073	Rituximab	DB00078	Ibritumomab tiuxetan	C0024305	non-Hodgkin lymphoma (NHL)
+DB00073	Rituximab	DB00078	Ibritumomab tiuxetan	C0079731	B-Cell Lymphomas
+DB00818	propofol	DB00683	Midazolam	C0038220	status epilepticus
+DB00331	metformin	DB00222	glimepiride	C0020456	hyperglycemia
+DB00331	metformin	DB00222	glimepiride	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB00331	metformin	DB00222	glimepiride	C0011849	diabetes mellitus
+DB00327	Hydromorphone	DB01192	Oxymorphone	C0030193	Pain
+DB08910	pomalidomide	DB01234	dexamethasone	C0026764	multiple myeloma
+DB00682	warfarin	DB01109	Heparin	C0149871	deep vein thrombosis (DVT)
+DB00758	clopidogrel	DB00945	aspirin	C0027051	Myocardial Infarction
+DB00758	clopidogrel	DB00945	aspirin	C0040053	thrombosis
+DB00264	metoprolol	DB01023	felodipine	C0020538	Hypertensive disease
+DB01248	docetaxel	DB00997	doxorubicin	C0678222	Breast Carcinoma
+DB01248	docetaxel	DB00997	doxorubicin	C1458155	Mammary Neoplasms
+DB01248	docetaxel	DB00997	doxorubicin	C0919267	Ovarian Neoplasm
+DB00005	Etanercept	DB00563	methotrexate	C0003873	rheumatoid arthritis
+DB00977	ethinyl-estradiol	DB00717	norethindrone	C0020619	hypogonadism
+DB00977	ethinyl-estradiol	DB00717	norethindrone	C0271578	Female Hypogonadism Syndrome
+DB00977	ethinyl-estradiol	DB00717	norethindrone	C0025323	Menorrhagia
+DB01204	mitoxantrone	DB00635	prednisone	C0026769	multiple sclerosis
+DB01204	mitoxantrone	DB00635	prednisone	C0024299	Lymphoma
+DB01306	insulin aspart, biphasic isophane [injection]	DB00331	metformin	C0011849	diabetes mellitus
+DB06209	prasugrel	DB00758	clopidogrel	C0027051	Myocardial Infarction
+DB06209	prasugrel	DB00758	clopidogrel	C0040053	thrombosis
+DB06209	prasugrel	DB00758	clopidogrel	C0948089	acute coronary syndrome (ACS)
+DB06209	prasugrel	DB00758	clopidogrel	C0038454	stroke
+DB00530	erlotinib	DB01248	docetaxel	C0007131	Non-Small Cell Lung Carcinoma
+DB01276	exenatide	DB01132	pioglitazone	C0020456	hyperglycemia
+DB01276	exenatide	DB01132	pioglitazone	C0011849	diabetes mellitus
+DB01001	albuterol	DB00394	beclomethasone-dipropionate	C0004096	asthma
+DB00758	clopidogrel	DB01076	atorvastatin	C0027051	Myocardial Infarction
+DB00758	clopidogrel	DB01076	atorvastatin	C0948089	acute coronary syndrome (ACS)
+DB00758	clopidogrel	DB01076	atorvastatin	C0038454	stroke
+DB00544	5-fluorouracil	DB00104	octreotide	C0007095	carcinoid tumors
+DB00544	5-fluorouracil	DB00104	octreotide	C0030297	Pancreatic Neoplasm
+DB00938	salmeterol	DB00394	beclomethasone-dipropionate	C0004096	asthma
+DB01238	aripiprazole	DB01356	Lithium	C0005586	bipolar disorder
+DB00973	ezetimibe	DB01095	fluvastatin	C0020443	hypercholesterolemia
+DB00973	ezetimibe	DB01095	fluvastatin	C0020474	Hyperlipidemia, Familial Combined
+DB00973	ezetimibe	DB01095	fluvastatin	C0020473	hyperlipidemia
+DB01212	ceftriaxone	DB01137	levofloxacin	C0032285	pneumonia
+DB00047	Insulin Glargine	DB00046	Insulin Lispro	C2748055	Hypoinsulinaemia
+DB00047	Insulin Glargine	DB00046	Insulin Lispro	C0011849	diabetes mellitus
+DB00047	Insulin Glargine	DB00046	Insulin Lispro	C0020456	hyperglycemia
+DB00047	Insulin Glargine	DB00046	Insulin Lispro	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB00047	Insulin Glargine	DB00046	Insulin Lispro	C0011854	Diabetes Mellitus, Insulin-Dependent
+DB00097	Choriogonadotropin alfa	DB06719	Buserelin	C0021361	Female Infertility
+DB00983	formoterol	DB00938	salmeterol	C0024117	Chronic Obstructive Airway Disease
+DB00983	formoterol	DB00938	salmeterol	C0004096	asthma
+DB00983	formoterol	DB00938	salmeterol	C0034067	Pulmonary Emphysema
+DB00476	duloxetine	DB01175	escitalopram	C1269683	Major Depressive Disorder
+DB00588	fluticasone propionate	DB00983	formoterol	C0004096	asthma
+DB00588	fluticasone propionate	DB00983	formoterol	C0034067	Pulmonary Emphysema
+DB00695	furosemide	DB00421	spironolactone	C0020538	Hypertensive disease
+DB00695	furosemide	DB00421	spironolactone	C0023890	hepatic cirrhosis
+DB00695	furosemide	DB00421	spironolactone	C0018802	congestive heart failure
+DB00695	furosemide	DB00421	spironolactone	C0027726	nephrotic syndrome
+DB00695	furosemide	DB00421	spironolactone	C0013604	edema
+DB00215	citalopram	DB00472	fluoxetine	C0011581	Depressive disorder
+DB00215	citalopram	DB00472	fluoxetine	C1269683	Major Depressive Disorder
+DB01229	paclitaxel	DB00441	gemcitabine	C1140680	Malignant Neoplasm Of Ovary
+DB01229	paclitaxel	DB00441	gemcitabine	C0007131	Non-Small Cell Lung Carcinoma
+DB00641	simvastatin	DB00175	pravastatin	C0020479	Hyperlipoproteinemia Type Iii
+DB00641	simvastatin	DB00175	pravastatin	C0027051	Myocardial Infarction
+DB00641	simvastatin	DB00175	pravastatin	C0020474	Hyperlipidemia, Familial Combined
+DB00641	simvastatin	DB00175	pravastatin	C0020443	hypercholesterolemia
+DB00641	simvastatin	DB00175	pravastatin	C0020473	hyperlipidemia
+DB00641	simvastatin	DB00175	pravastatin	C0003850	arteriosclerosis
+DB00641	simvastatin	DB00175	pravastatin	C0020557	hypertriglyceridemia
+DB00641	simvastatin	DB00175	pravastatin	C0020476	Hyperlipoproteinemias
+DB00641	simvastatin	DB00175	pravastatin	C0038454	stroke
+DB00553	methoxsalen	DB00307	bexarotene	C0079773	cutaneous T-cell lymphoma (CTCL)
+DB00388	phenylephrine	DB00852	Pseudoephedrine	C2607914	Allergic Rhinitis (Disorder)
+DB00388	phenylephrine	DB00852	Pseudoephedrine	C0018621	Hay Fever
+DB00388	phenylephrine	DB00852	Pseudoephedrine	C0027424	Nasal congestion (finding)
+DB00388	phenylephrine	DB00852	Pseudoephedrine	C0035455	Rhinitis
+DB01041	Thalidomide	DB00635	prednisone	C0014742	Erythema Multiforme
+DB01041	Thalidomide	DB00635	prednisone	C0003873	rheumatoid arthritis
+DB01041	Thalidomide	DB00635	prednisone	C0010346	Crohn's disease
+DB01041	Thalidomide	DB00635	prednisone	C0024419	Waldenstrom's macroglobulinemia (WM)
+DB00399	zoledronic-acid	DB00153	ergocalciferol	C0029458	Osteoporosis, Postmenopausal
+DB00399	zoledronic-acid	DB00153	ergocalciferol	C0029456	osteoporosis
+DB01197	captopril	DB01029	irbesartan	C0020538	Hypertensive disease
+DB01197	captopril	DB01029	irbesartan	C0011881	diabetic nephropathy
+DB01197	captopril	DB01029	irbesartan	C0242698	Ventricular Dysfunction, Left
+DB01197	captopril	DB01029	irbesartan	C0018802	congestive heart failure
+DB00993	azathioprine	DB00860	prednisolone	C0024141	Lupus Erythematosus, Systemic
+DB00993	azathioprine	DB00860	prednisolone	C0026769	multiple sclerosis
+DB00993	azathioprine	DB00860	prednisolone	C0010346	Crohn's disease
+DB00993	azathioprine	DB00860	prednisolone	C0009324	ulcerative colitis
+DB00993	azathioprine	DB00860	prednisolone	C0003873	rheumatoid arthritis
+DB00480	lenalidomide	DB00928	azacitidine	C0002871	anemia
+DB00783	estradiol	DB00007	leuprolide	C0033578	Prostatic Neoplasms
+DB00783	estradiol	DB00007	leuprolide	C1458155	Mammary Neoplasms
+DB00515	cisplatin	DB00544	5-fluorouracil	C0038356	Stomach Neoplasms
+DB00515	cisplatin	DB00544	5-fluorouracil	C1458155	Mammary Neoplasms
+DB00983	formoterol	DB01409	tiotropium	C0024117	Chronic Obstructive Airway Disease
+DB00983	formoterol	DB01409	tiotropium	C0004096	asthma
+DB00983	formoterol	DB01409	tiotropium	C0034067	Pulmonary Emphysema
+DB00047	Insulin Glargine	DB00331	metformin	C0020456	hyperglycemia
+DB00047	Insulin Glargine	DB00331	metformin	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB00047	Insulin Glargine	DB00331	metformin	C0011849	diabetes mellitus
+DB00966	telmisartan	DB00758	clopidogrel	C0038454	stroke
+DB00871	terbutaline	DB01222	budesonide	C0004096	asthma
+DB00584	enalapril	DB01136	carvedilol	C0020538	Hypertensive disease
+DB00584	enalapril	DB01136	carvedilol	C0018802	congestive heart failure
+DB00678	losartan	DB00722	lisinopril	C0020538	Hypertensive disease
+DB00678	losartan	DB00722	lisinopril	C0018802	congestive heart failure
+DB01076	atorvastatin	DB00641	simvastatin	C0020479	Hyperlipoproteinemia Type Iii
+DB01076	atorvastatin	DB00641	simvastatin	C0027051	Myocardial Infarction
+DB01076	atorvastatin	DB00641	simvastatin	C0020474	Hyperlipidemia, Familial Combined
+DB01076	atorvastatin	DB00641	simvastatin	C0342881	Familial hypercholesterolemia - homozygous
+DB01076	atorvastatin	DB00641	simvastatin	C0020443	hypercholesterolemia
+DB01076	atorvastatin	DB00641	simvastatin	C0020473	hyperlipidemia
+DB01076	atorvastatin	DB00641	simvastatin	C0003850	arteriosclerosis
+DB01076	atorvastatin	DB00641	simvastatin	C0020557	hypertriglyceridemia
+DB01076	atorvastatin	DB00641	simvastatin	C0020476	Hyperlipoproteinemias
+DB01076	atorvastatin	DB00641	simvastatin	C0038454	stroke
+DB00295	Morphine	DB00316	paracetamol	C0030193	Pain
+DB01115	nifedipine	DB00796	candesartan-cilextil	C0020538	Hypertensive disease
+DB00515	cisplatin	DB00361	vinorelbine	C1458155	Mammary Neoplasms
+DB00515	cisplatin	DB00361	vinorelbine	C0919267	Ovarian Neoplasm
+DB00515	cisplatin	DB00361	vinorelbine	C0019829	Hodgkin's lymphoma
+DB01212	ceftriaxone	DB00713	Oxacillin	C0149725	Lower respiratory tract infection
+DB01212	ceftriaxone	DB00713	Oxacillin	C2242472	Infection of bone
+DB00047	Insulin Glargine	DB01309	Insulin Glulisine	C2748055	Hypoinsulinaemia
+DB00047	Insulin Glargine	DB01309	Insulin Glulisine	C0020456	hyperglycemia
+DB00047	Insulin Glargine	DB01309	Insulin Glulisine	C0011849	diabetes mellitus
+DB01212	ceftriaxone	DB01211	clarithromycin	C0029882	Otitis Media
+DB01212	ceftriaxone	DB01211	clarithromycin	C0032285	pneumonia
+DB01043	memantine	DB00989	rivastigmine	C0002395	Alzheimer's disease
+DB01043	memantine	DB00989	rivastigmine	C0030567	Parkinson's Disease
+DB00678	losartan	DB00571	propranolol	C0003811	Cardiac Arrhythmia
+DB00678	losartan	DB00571	propranolol	C0020538	Hypertensive disease
+DB00678	losartan	DB00571	propranolol	C0018802	congestive heart failure
+DB00073	Rituximab	DB00635	prednisone	C0024305	non-Hodgkin lymphoma (NHL)
+DB00073	Rituximab	DB00635	prednisone	C0023434	chronic lymphocytic leukemia (CLL)
+DB00073	Rituximab	DB00635	prednisone	C0003873	rheumatoid arthritis
+DB00030	insulin human	DB01276	exenatide	C0011849	diabetes mellitus
+DB06285	Teriparatide	DB06643	Denosumab	C0029458	Osteoporosis, Postmenopausal
+DB06285	Teriparatide	DB06643	Denosumab	C0029456	osteoporosis
+DB00312	Pentobarbital	DB00599	thiopental	C0014544	epilepsy
+DB00588	fluticasone propionate	DB00860	prednisolone	C0020517	Hypersensitivity
+DB00588	fluticasone propionate	DB00860	prednisolone	C0011616	contact dermatitis
+DB00588	fluticasone propionate	DB00860	prednisolone	C0011615	Dermatitis, Atopic
+DB00588	fluticasone propionate	DB00860	prednisolone	C0015230	Exanthema
+DB00588	fluticasone propionate	DB00860	prednisolone	C0079773	cutaneous T-cell lymphoma (CTCL)
+DB00588	fluticasone propionate	DB00860	prednisolone	C0036508	seborrheic dermatitis
+DB00588	fluticasone propionate	DB00860	prednisolone	C2607914	Allergic Rhinitis (Disorder)
+DB00588	fluticasone propionate	DB00860	prednisolone	C0004096	asthma
+DB00588	fluticasone propionate	DB00860	prednisolone	C0024138	Lupus Erythematosus, Discoid
+DB00912	repaglinide	DB00030	insulin human	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB00912	repaglinide	DB00030	insulin human	C0011849	diabetes mellitus
+DB06203	alogliptin	DB04878	voglibose	C0020456	hyperglycemia
+DB06203	alogliptin	DB04878	voglibose	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB06203	alogliptin	DB04878	voglibose	C0011849	diabetes mellitus
+DB00203	sildenafil	DB06710	Methyltestosterone	C0242350	erectile dysfunction
+DB00065	Infliximab	DB00993	azathioprine	C0009324	ulcerative colitis
+DB00065	Infliximab	DB00993	azathioprine	C0010346	Crohn's disease
+DB00065	Infliximab	DB00993	azathioprine	C0003873	rheumatoid arthritis
+DB06273	Tocilizumab	DB00563	methotrexate	C0003873	rheumatoid arthritis
+DB00531	cyclophosphamide	DB00860	prednisolone	C0002880	Autoimmune Hemolytic Anemia
+DB00531	cyclophosphamide	DB00860	prednisolone	C0026769	multiple sclerosis
+DB00531	cyclophosphamide	DB00860	prednisolone	C0026948	Mycosis Fungoides
+DB00531	cyclophosphamide	DB00860	prednisolone	C0023449	Acute Lymphocytic Leukemia
+DB00531	cyclophosphamide	DB00860	prednisolone	C0027726	nephrotic syndrome
+DB00531	cyclophosphamide	DB00860	prednisolone	C0024299	Lymphoma
+DB00531	cyclophosphamide	DB00860	prednisolone	C0023418	Leukemia
+DB00531	cyclophosphamide	DB00860	prednisolone	C0019829	Hodgkin's lymphoma
+DB01212	ceftriaxone	DB00916	metronidazole	C0149725	Lower respiratory tract infection
+DB01212	ceftriaxone	DB00916	metronidazole	C2242472	Infection of bone
+DB01212	ceftriaxone	DB00916	metronidazole	C0031154	peritonitis
+DB00938	salmeterol	DB05039	indacaterol	C0024117	Chronic Obstructive Airway Disease
+DB00938	salmeterol	DB05039	indacaterol	C0034067	Pulmonary Emphysema
+DB06335	saxagliptin	DB01132	pioglitazone	C0020456	hyperglycemia
+DB06335	saxagliptin	DB01132	pioglitazone	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB06335	saxagliptin	DB01132	pioglitazone	C0011849	diabetes mellitus
+DB01576	dextroamphetamine	DB00422	methylphenidate	C0027404	narcolepsy
+DB01576	dextroamphetamine	DB00422	methylphenidate	C1263846	attention-deficit/hyperactivity disorder (ADHD)
+DB00073	Rituximab	DB01234	dexamethasone	C0024305	non-Hodgkin lymphoma (NHL)
+DB00073	Rituximab	DB01234	dexamethasone	C0003873	rheumatoid arthritis
+DB01217	anastrozole	DB00947	fulvestrant	C1458155	Mammary Neoplasms
+DB00584	enalapril	DB00796	candesartan-cilextil	C0020538	Hypertensive disease
+DB00584	enalapril	DB00796	candesartan-cilextil	C0018802	congestive heart failure
+DB00065	Infliximab	DB00563	methotrexate	C0003873	rheumatoid arthritis
+DB00381	amlodipine	DB00999	hydrochlorothiazide	C0020538	Hypertensive disease
+DB01104	sertraline	DB01068	clonazepam	C0030319	panic disorders
+DB00678	losartan	DB00335	atenolol-(+/-)	C0003811	Cardiac Arrhythmia
+DB00678	losartan	DB00335	atenolol-(+/-)	C0020538	Hypertensive disease
+DB00678	losartan	DB00335	atenolol-(+/-)	C0018802	congestive heart failure
+DB01120	gliclazide	DB00331	metformin	C0020456	hyperglycemia
+DB01120	gliclazide	DB00331	metformin	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB01120	gliclazide	DB00331	metformin	C0011849	diabetes mellitus
+DB01156	bupropion	DB01175	escitalopram	C1269683	Major Depressive Disorder
+DB00678	losartan	DB00381	amlodipine	C0020538	Hypertensive disease
+DB00065	Infliximab	DB00091	cyclosporine	C0003873	rheumatoid arthritis
+DB00627	niacin	DB00973	ezetimibe	C0020443	hypercholesterolemia
+DB00627	niacin	DB00973	ezetimibe	C0020474	Hyperlipidemia, Familial Combined
+DB00627	niacin	DB00973	ezetimibe	C0020473	hyperlipidemia
+DB00694	daunorubicin	DB00987	cytarabine	C0023487	acute promyelocytic leukemia (APL)
+DB00694	daunorubicin	DB00987	cytarabine	C0023467	Leukemia, Myelocytic, Acute
+DB00694	daunorubicin	DB00987	cytarabine	C0023449	Acute Lymphocytic Leukemia
+DB00471	montelukast	DB00860	prednisolone	C2607914	Allergic Rhinitis (Disorder)
+DB00471	montelukast	DB00860	prednisolone	C0004096	asthma
+DB00043	omalizumab	DB00588	fluticasone propionate	C0004096	asthma
+DB00043	omalizumab	DB00588	fluticasone propionate	C0020517	Hypersensitivity
+DB00921	Buprenorphine	DB00704	naltrexone	C0150055	chronic pain
+DB00178	ramipril	DB01029	irbesartan	C0020538	Hypertensive disease
+DB00178	ramipril	DB01029	irbesartan	C0018802	congestive heart failure
+DB01098	rosuvastatin	DB01076	atorvastatin	C0020479	Hyperlipoproteinemia Type Iii
+DB01098	rosuvastatin	DB01076	atorvastatin	C0020474	Hyperlipidemia, Familial Combined
+DB01098	rosuvastatin	DB01076	atorvastatin	C0342881	Familial hypercholesterolemia - homozygous
+DB01098	rosuvastatin	DB01076	atorvastatin	C0020443	hypercholesterolemia
+DB01098	rosuvastatin	DB01076	atorvastatin	C0020473	hyperlipidemia
+DB01098	rosuvastatin	DB01076	atorvastatin	C0003850	arteriosclerosis
+DB01098	rosuvastatin	DB01076	atorvastatin	C0020557	hypertriglyceridemia
+DB01098	rosuvastatin	DB01076	atorvastatin	C0038454	stroke
+DB01212	ceftriaxone	DB00601	linezolid	C0032285	pneumonia
+DB01012	cinacalcet	DB00910	paricalcitol	C1561643	chronic kidney disease (CKD)
+DB01012	cinacalcet	DB00910	paricalcitol	C0020502	hyperparathyroidism
+DB01012	cinacalcet	DB00910	paricalcitol	C0020503	Hyperparathyroidism, Secondary
+DB00746	deferoxamine-mesylate	DB01609	deferasirox	C0282193	iron overload
+DB00396	progesterone	DB00007	leuprolide	C0021361	Female Infertility
+DB00396	progesterone	DB00007	leuprolide	C0014175	endometriosis
+DB00396	progesterone	DB00007	leuprolide	C0021359	infertility
+DB00678	losartan	DB04861	nebivolol	C0020538	Hypertensive disease
+DB00471	montelukast	DB00588	fluticasone propionate	C2607914	Allergic Rhinitis (Disorder)
+DB00471	montelukast	DB00588	fluticasone propionate	C0004096	asthma
+DB01268	sunitinib	DB00398	sorafenib	C0007134	renal cell carcinoma (RCC)
+DB00990	exemestane	DB00675	tamoxifen	C1458155	Mammary Neoplasms
+DB00945	aspirin	DB00647	Dextropropoxyphene	C0030193	Pain
+DB00719	azatadine	DB00852	Pseudoephedrine	C0035457	Rhinitis, Allergic, Perennial
+DB00719	azatadine	DB00852	Pseudoephedrine	C2607914	Allergic Rhinitis (Disorder)
+DB00719	azatadine	DB00852	Pseudoephedrine	C0027424	Nasal congestion (finding)
+DB00719	azatadine	DB00852	Pseudoephedrine	C0018621	Hay Fever
+DB00972	azelastine	DB00588	fluticasone propionate	C2607914	Allergic Rhinitis (Disorder)
+DB00972	azelastine	DB00588	fluticasone propionate	C0004096	asthma
+DB00972	azelastine	DB00588	fluticasone propionate	C0020517	Hypersensitivity
+DB00195	betaxolol	DB00310	chlorthalidone	C0020538	Hypertensive disease
+DB01085	pilocarpine	DB00195	betaxolol	C0017601	glaucoma
+DB01085	pilocarpine	DB00195	betaxolol	C0028840	ocular hypertension
+DB01085	pilocarpine	DB00195	betaxolol	C0017612	Glaucoma, Open-Angle
+DB00318	Codeine	DB01237	Bromodiphenhydramine	C0010200	Coughing
+DB00318	Codeine	DB01237	Bromodiphenhydramine	C0027424	Nasal congestion (finding)
+DB00206	reserpine	DB00880	chlorothiazide	C0020538	Hypertensive disease
+DB01114	chlorphenamine	DB00397	Phenylpropanolamine	C2607914	Allergic Rhinitis (Disorder)
+DB01114	chlorphenamine	DB00397	Phenylpropanolamine	C0018621	Hay Fever
+DB01114	chlorphenamine	DB00397	Phenylpropanolamine	C0027424	Nasal congestion (finding)
+DB01114	chlorphenamine	DB00397	Phenylpropanolamine	C0035455	Rhinitis
+DB00318	Codeine	DB01114	chlorphenamine	C2607914	Allergic Rhinitis (Disorder)
+DB00318	Codeine	DB01114	chlorphenamine	C0027424	Nasal congestion (finding)
+DB00318	Codeine	DB01114	chlorphenamine	C0035455	Rhinitis
+DB00575	clonidine	DB00310	chlorthalidone	C0020538	Hypertensive disease
+DB00264	metoprolol	DB00310	chlorthalidone	C0020538	Hypertensive disease
+DB00206	reserpine	DB00310	chlorthalidone	C0020538	Hypertensive disease
+DB00014	goserelin-acetate	DB00675	tamoxifen	C0006142	Malignant Neoplasm Of Breast
+DB00563	methotrexate	DB01281	Abatacept	C0003873	rheumatoid arthritis
+DB00361	vinorelbine	DB01248	docetaxel	C0007131	Non-Small Cell Lung Carcinoma
+DB00361	vinorelbine	DB01248	docetaxel	C1458155	Mammary Neoplasms
+DB00361	vinorelbine	DB01248	docetaxel	C0919267	Ovarian Neoplasm
+DB06335	saxagliptin	DB00030	insulin human	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB06335	saxagliptin	DB00030	insulin human	C0011849	diabetes mellitus
+DB01076	atorvastatin	DB00945	aspirin	C0027051	Myocardial Infarction
+DB00445	epirubicin	DB01248	docetaxel	C0678222	Breast Carcinoma
+DB00445	epirubicin	DB01248	docetaxel	C1458155	Mammary Neoplasms
+DB00381	amlodipine	DB01029	irbesartan	C0020538	Hypertensive disease
+DB00034	Interferon Alfa-2a	DB06287	temsirolimus	C0026764	multiple myeloma
+DB00034	Interferon Alfa-2a	DB06287	temsirolimus	C0007134	renal cell carcinoma (RCC)
+DB00441	gemcitabine	DB01248	docetaxel	C0007131	Non-Small Cell Lung Carcinoma
+DB00295	Morphine	DB00704	naltrexone	C0150055	chronic pain
+DB00182	Amphetamine	DB01576	dextroamphetamine	C0027404	narcolepsy
+DB00182	Amphetamine	DB01576	dextroamphetamine	C1263846	attention-deficit/hyperactivity disorder (ADHD)
+DB00783	estradiol	DB00717	norethindrone	C0020619	hypogonadism
+DB00783	estradiol	DB00717	norethindrone	C0271578	Female Hypogonadism Syndrome
+DB00783	estradiol	DB00717	norethindrone	C0025323	Menorrhagia
+DB06335	saxagliptin	DB00331	metformin	C0020456	hyperglycemia
+DB06335	saxagliptin	DB00331	metformin	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB06335	saxagliptin	DB00331	metformin	C0011849	diabetes mellitus
+DB00977	ethinyl-estradiol	DB06713	norelgestromin	C0006142	Malignant Neoplasm Of Breast
+DB00691	moexipril	DB00999	hydrochlorothiazide	C0020538	Hypertensive disease
+DB00691	moexipril	DB00999	hydrochlorothiazide	C0018802	congestive heart failure
+DB06203	alogliptin	DB00331	metformin	C0020456	hyperglycemia
+DB06203	alogliptin	DB00331	metformin	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB06203	alogliptin	DB00331	metformin	C0011849	diabetes mellitus
+DB00983	formoterol	DB00764	mometasone	C0004096	asthma
+DB08822	Azilsartan medoxomil	DB00310	chlorthalidone	C0020538	Hypertensive disease
+DB00630	alendronate	DB00169	cholecalciferol	C0029458	Osteoporosis, Postmenopausal
+DB00630	alendronate	DB00169	cholecalciferol	C0029456	osteoporosis
+DB00706	tamsulosin	DB01126	dutasteride	C2937421	Prostatic Hyperplasia
+DB08882	linagliptin	DB00331	metformin	C0020456	hyperglycemia
+DB08882	linagliptin	DB00331	metformin	C0011860	Diabetes Mellitus, Non-Insulin-Dependent
+DB08882	linagliptin	DB00331	metformin	C0011849	diabetes mellitus
+DB01194	brinzolamide	DB00484	brimonidine	C0017601	glaucoma
+DB01194	brinzolamide	DB00484	brimonidine	C0017612	Glaucoma, Open-Angle
+DB01194	brinzolamide	DB00484	brimonidine	C0028840	ocular hypertension
+DB00297	bupivacaine	DB00281	lidocaine	C0033774	Pruritus
+DB00977	ethinyl-estradiol	DB00367	levonorgestrel	C0025323	Menorrhagia
+DB00273	topiramate	DB00191	phentermine	C0028754	obesity
+DB00945	aspirin	DB00241	butalbital	C0018681	headache
+DB00945	aspirin	DB00241	butalbital	C0149931	Migraine Disorders
+DB00945	aspirin	DB00956	Hydrocodone	C0030193	Pain
+DB00652	Pentazocine	DB00945	aspirin	C0030193	Pain
+DB00945	aspirin	DB00175	pravastatin	C0027051	Myocardial Infarction
+DB00457	prazosin	DB01324	polythiazide	C0020538	Hypertensive disease
+DB00457	prazosin	DB01324	polythiazide	C0018802	congestive heart failure
+DB01324	polythiazide	DB00206	reserpine	C0020538	Hypertensive disease
+DB01021	trichlormethiazide	DB00206	reserpine	C0020538	Hypertensive disease
+DB01234	dexamethasone	DB00994	Neomycin	C0022568	Keratitis
+DB01234	dexamethasone	DB00994	Neomycin	C0042164	Uveitis
+DB00343	diltiazem	DB00584	enalapril	C0020538	Hypertensive disease
+DB01075	diphenhydramine	DB00788	naproxen	C0018681	headache
+DB01075	diphenhydramine	DB00852	Pseudoephedrine	C0035457	Rhinitis, Allergic, Perennial
+DB01075	diphenhydramine	DB00852	Pseudoephedrine	C0018621	Hay Fever
+DB00894	testolactone	DB00783	estradiol	C1458155	Mammary Neoplasms
+DB01357	mestranol	DB00823	ethynodiol-diacetate	C0014175	endometriosis
+DB01170	guanethidine	DB00999	hydrochlorothiazide	C0020538	Hypertensive disease
+DB01275	hydralazine	DB00999	hydrochlorothiazide	C0020538	Hypertensive disease
+DB01275	hydralazine	DB00999	hydrochlorothiazide	C0018802	congestive heart failure
+DB01275	hydralazine	DB00206	reserpine	C0085580	Essential Hypertension
+DB01275	hydralazine	DB00206	reserpine	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00598	labetalol	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00598	labetalol	C0018802	congestive heart failure
+DB00999	hydrochlorothiazide	DB00960	pindolol	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00960	pindolol	C0013604	edema
+DB00999	hydrochlorothiazide	DB00206	reserpine	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00373	timolol	C0020538	Hypertensive disease
+DB00999	hydrochlorothiazide	DB00373	timolol	C0018802	congestive heart failure
+DB00397	Phenylpropanolamine	DB00956	Hydrocodone	C0010200	Coughing
+DB00397	Phenylpropanolamine	DB00956	Hydrocodone	C2607914	Allergic Rhinitis (Disorder)
+DB00397	Phenylpropanolamine	DB00956	Hydrocodone	C0027424	Nasal congestion (finding)
+DB00397	Phenylpropanolamine	DB00956	Hydrocodone	C0035455	Rhinitis
+DB00956	Hydrocodone	DB00852	Pseudoephedrine	C2607914	Allergic Rhinitis (Disorder)
+DB00956	Hydrocodone	DB00852	Pseudoephedrine	C0027424	Nasal congestion (finding)
+DB00956	Hydrocodone	DB00852	Pseudoephedrine	C0035455	Rhinitis
+DB00741	hydrocortisone	DB00994	Neomycin	C0014356	Enterocolitis
+DB00741	hydrocortisone	DB00994	Neomycin	C0022568	Keratitis
+DB00741	hydrocortisone	DB00994	Neomycin	C0042164	Uveitis
+DB03904	urea	DB00741	hydrocortisone	C0011616	contact dermatitis
+DB03904	urea	DB00741	hydrocortisone	C0013595	eczema
+DB03904	urea	DB00741	hydrocortisone	C0015230	Exanthema
+DB03904	urea	DB00741	hydrocortisone	C0036508	seborrheic dermatitis
+DB03904	urea	DB00741	hydrocortisone	C0011603	dermatitis
+DB03904	urea	DB00741	hydrocortisone	C0033860	psoriasis
+DB00206	reserpine	DB00774	hydroflumethiazide	C0020538	Hypertensive disease
+DB00388	phenylephrine	DB01050	ibuprofen	C0015967	fever
+DB00007	leuprolide	DB00717	norethindrone	C0014175	endometriosis
+DB01626	pargyline	DB00232	methyclothiazide	C0020538	Hypertensive disease
+DB00206	reserpine	DB00232	methyclothiazide	C0020538	Hypertensive disease
+DB00860	prednisolone	DB00994	Neomycin	C0014356	Enterocolitis
+DB00860	prednisolone	DB00994	Neomycin	C0022568	Keratitis
+DB00860	prednisolone	DB00994	Neomycin	C0042164	Uveitis
+DB00620	triamcinolone	DB00994	Neomycin	C0042164	Uveitis
+DB00388	phenylephrine	DB06691	mepyramine	C2607914	Allergic Rhinitis (Disorder)
+DB00388	phenylephrine	DB06691	mepyramine	C0027424	Nasal congestion (finding)
+DB00388	phenylephrine	DB06691	mepyramine	C0018621	Hay Fever
