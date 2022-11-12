@@ -22,11 +22,12 @@ class LoadData():
     - biological function: GO term
     '''
     def __init__(self):
-        abs_path = Path(__file__).parent.absolute()
-        self.df_path_dict = {'drug': abs_path / 'data/raw/1_drug_to_protein.tsv',
-                             'indication': abs_path / 'data/raw/2_indication_to_protein.tsv',
-                             'protein': abs_path / 'data/raw/3_protein_to_protein.tsv',
-                             'biological_function': abs_path / 'data/raw/5_biological_function_to_biological_function.tsv'}
+        abs_raw_path = Path(__file__).parent.absolute() / 'data/raw'
+        self.abs_raw_path = abs_raw_path
+        self.df_path_dict = {'drug': abs_raw_path / '1_drug_to_protein.tsv',
+                             'indication': abs_raw_path / '2_indication_to_protein.tsv',
+                             'protein': abs_raw_path / '3_protein_to_protein.tsv',
+                             'biological_function': abs_raw_path / '5_biological_function_to_biological_function.tsv'}
 
     def _constitute_dictionary(self, list_id, list_name, dict_=dict()):
         for i in range(len(list_id)):
@@ -52,3 +53,9 @@ class LoadData():
             return type_id2name, type_name2id
         else:
             print("Wrong type!")
+    
+    def load_idx2node(self):
+        pkl_path = self.abs_raw_path / '10_top_msi/idx2node.pkl'
+        with open(pkl_path, 'rb') as f:
+            idx2node = pickle.load(f)
+            return idx2node
