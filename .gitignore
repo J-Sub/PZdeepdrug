@@ -3,3 +3,4 @@ MSI/.ipynb_checkpoints/
 MSI/__pycache__/
 data/
 temp.ipynb
+MSI/wandb/
