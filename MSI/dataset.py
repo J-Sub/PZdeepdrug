@@ -43,6 +43,7 @@ class CombinationDataset(Dataset):
         else:
             self._process()
         print(f'Loading dataset...{self.data_path}')
+        print('Dictionary of {train, valid, test} dataset is loaded.')
         self.data = torch.load(self.data_path)
         
     def __len__(self):
@@ -53,8 +54,16 @@ class CombinationDataset(Dataset):
     def _process(self):
         print('Processing dataset...')
         dataset_list = self._create_dataset()
+        train_size = int(len(dataset_list) * 0.8)
+        valid_size = int(len(dataset_list) * 0.1)
+        test_size = len(dataset_list) - train_size - valid_size
+        torch.manual_seed(0)
+        train_dataset, valid_dataset, test_dataset = torch.utils.data.random_split(dataset_list, [train_size, valid_size, test_size])
+        dataset_dict = {'train': train_dataset, 'valid': valid_dataset, 'test': test_dataset
+        }
+
         print(f'Saving dataset...')
-        torch.save(dataset_list, self.data_path)
+        torch.save(dataset_dict, self.data_path)
     
     def _create_dataset(self):
         dataloader = LoadData()
