@@ -12,6 +12,15 @@ from torch.utils.data import Dataset, DataLoader
 
 class CombinationDataset(Dataset):
     def __init__(self, database='DCDB', neg_ratio=1, duplicate=False, use_ddi=False, ddi_dataset=None, seed=42, transform=None):
+        '''
+        args
+            - database: str, default='C_DCDB' ['C_DCDB', 'DCDB', 'DC_combined']
+            - neg_ratio: int, default=1
+            - duplicate: bool, default=False (if True, duplicate each samples) -> [a, b] & [b, a]
+            - use_ddi: bool, default=False (if True, use ddi dataset)
+            - ddi_dataset: str, default=None (if use_ddi is True, choose ddi dataset) ['DB', 'TWOSIDES']
+            - seed: int, default=42
+        '''
         if (database != 'DCDB') & (database != 'C_DCDB') & (database != 'DC_combined'):
             raise ValueError('database must be DCDB or C_DCDB or DC_combined')
         if neg_ratio < 1:
