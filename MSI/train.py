@@ -135,18 +135,14 @@ def main():
     seed_everything(args.seed)
 
     dataset = CombinationDataset(database=args.database, neg_ratio=args.neg_ratio, duplicate=args.duplicate, use_ddi=args.use_ddi, ddi_dataset=args.ddi_dataset, seed=args.seed)
-    print(len(dataset))
-
-    train_size = int(0.8 * len(dataset))
-    valid_size = int(0.1 * len(dataset))
-    test_size = len(dataset) - train_size - valid_size
-    train_dataset, valid_dataset, test_dataset = torch.utils.data.random_split(dataset, [train_size, valid_size, test_size])
+    train_dataset, valid_dataset, test_dataset = dataset['train'], dataset['valid'], dataset['test']
+    print(len(train_dataset), len(valid_dataset), len(test_dataset))
 
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, drop_last=True)
     valid_loader = DataLoader(valid_dataset, batch_size=args.batch_size, shuffle=True)
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, shuffle=False)
 
-    input_dim = dataset[0][0].shape[0]
+    input_dim = train_dataset[0][0].shape[0]
     hidden_dim = input_dim
     output_dim = 1
 
@@ -187,8 +183,45 @@ def main():
         print(f'Test Loss: {test_loss:.4f} | Test Acc: {test_scores[0]*100:.2f}% | Test AUROC: {test_scores[1]:.2f} | Test F1: {test_scores[2]:.4f} | Test AUPRC: {test_scores[3]:.2f}')
     
     elif args.train_mode == 'sup_con':
-        print('Supervised Contrastive pretraining...')
         pass
+        # print('Supervised Contrastive pretraining...')
+        # input_dim = dataset[0][0].shape[0]
+        # hidden_dim = input_dim
+        # output_dim = 1
+        # model = CombNetSupCon(input_dim, hidden_dim, output_dim, contrastive_dim=128)
+
+        # CONT_EPOCHS = 300
+        # CONT_LR = 0.001
+        # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        # model.to(device)
+        # criterion = SupConLoss(temperature=0.1).to(device)
+        # optimizer = torch.optim.Adam(model.parameters(), lr=CONT_LR, weight_decay=1e-5)
+
+        # for epoch in range(CONT_EPOCHS):
+        #     train_loss = train_sup_con(model, device, train_loader, criterion, optimizer)
+        #     if epoch % 10 == 0:
+        #         torch.save(model.state_dict(), 'sup_con_checkpoint.pt')
+        #     print(f'Epoch {epoch+1:03d}: | Train Loss: {train_loss:.4f}')
+        
+        # print("Cross Entropy training...")
+        # CE_EPOCHS = 100
+        # CE_LR = 0.001
+        # model.load_state_dict(torch.load('sup_con_checkpoint.pt'))
+        # model.freeze_projection()
+        # criterion = nn.BCEWithLogitsLoss()
+        # optimizer = torch.optim.Adam(model.parameters(), lr=CE_LR, weight_decay=1e-5)
+
+        # best_valid_loss = float('inf')
+        # for epoch in range(CE_EPOCHS):
+        #     train_loss, train_scores = train_cross_entropy(model, device, train_loader, criterion, optimizer, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score])
+        #     valid_loss, valid_scores = evaluate(model, device, valid_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score])
+        #     if valid_loss < best_valid_loss:
+        #         best_valid_loss = valid_loss
+        #         torch.save(model.state_dict(), 'checkpoint.pt')
+        #     print(f'Epoch {epoch+1:03d}: | Train Loss: {train_loss:.4f} | Train Acc: {train_scores[0]*100:.2f}% | Train AUROC: {train_scores[1]:.2f} | Train F1: {train_scores[2]:.4f} | Train AUPRC: {train_scores[3]:.2f} || Val. Loss: {valid_loss:.4f} | Val. Acc: {valid_scores[0]*100:.2f}% | Val. AUROC: {valid_scores[1]:.2f} | Val. F1: {valid_scores[2]:.4f} | Val. AUPRC: {valid_scores[3]:.2f}')
+        
+        # test_loss, test_scores = evaluate(model, device, test_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score], checkpoint='checkpoint.pt')
+        # print(f'Test Loss: {test_loss:.4f} | Test Acc: {test_scores[0]*100:.2f}% | Test AUROC: {test_scores[1]:.2f} | Test F1: {test_scores[2]:.4f} | Test AUPRC: {test_scores[3]:.2f}')
 
 
 if __name__ == '__main__':
