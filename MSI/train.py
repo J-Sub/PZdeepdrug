@@ -32,12 +32,14 @@ def parse_args():
     parser.add_argument('--ddi_dataset', type=str, default=None)
     parser.add_argument('--comb_type', type=str, default='cat') # cat, sum, diff, sumdiff
     parser.add_argument('--batch_size', type=int, default=32)
-    parser.add_argument('--epochs', type=int, default=100)
-    parser.add_argument('--lr', type=float, default=0.001)
+    parser.add_argument('--epochs', type=int, default=50)
+    parser.add_argument('--lr', type=float, default=1e-3) # 
     parser.add_argument('--weight_decay', type=float, default=1e-5)
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--device', type=int, default=0)
     parser.add_argument('--train_mode', type=str, default='cross_entropy')
+    parser.add_argument('--run_name', type=str, default='test_run')
+    parser.add_argument('--group', type=str, default=None)
     args = parser.parse_args()
     return args
 
@@ -127,9 +129,11 @@ def evaluate(model, device, loader, criterion, metric_list=[accuracy_score], che
 
 
 def main():
-    wandb.init(project="PharmGen_drug_comb")
     args = parse_args()
+    wandb.init(project="PharmGen_drug_comb", group=args.group)
     wandb.config.update(args)
+    wandb.run.name = args.run_name
+    wandb.run.save()
     print(args)
 
     seed_everything(args.seed)
@@ -160,8 +164,8 @@ def main():
         best_valid_loss = float('inf')
         for epoch in range(EPOCHS):
             train_loss, train_scores = train_cross_entropy(model, device, train_loader, criterion, optimizer,
-                                                           metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score])
-            valid_loss, valid_scores = evaluate(model, device, valid_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score])
+                                                           metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score])
+            valid_loss, valid_scores = evaluate(model, device, valid_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score])
             if valid_loss < best_valid_loss:
                 best_valid_loss = valid_loss
                 torch.save(model.state_dict(), 'checkpoint.pt')
@@ -176,11 +180,17 @@ def main():
                 'valid_f1': valid_scores[2],
                 'train_auprc': train_scores[3],
                 'valid_auprc': valid_scores[3],
+                'train_precision': train_scores[4],
+                'valid_precision': valid_scores[4],
+                'train_recall': train_scores[5],
+                'valid_recall': valid_scores[5],
             })
-            print(f'Epoch {epoch+1:03d}: | Train Loss: {train_loss:.4f} | Train Acc: {train_scores[0]*100:.2f}% | Train AUROC: {train_scores[1]:.2f} | Train F1: {train_scores[2]:.4f} | Train AUPRC: {train_scores[3]:.2f} || Val. Loss: {valid_loss:.4f} | Val. Acc: {valid_scores[0]*100:.2f}% | Val. AUROC: {valid_scores[1]:.2f} | Val. F1: {valid_scores[2]:.4f} | Val. AUPRC: {valid_scores[3]:.2f}')
+#             print(f'Epoch {epoch+1:03d}: | Train Loss: {train_loss:.4f} | Train Acc: {train_scores[0]*100:.2f}% | Train AUROC: {train_scores[1]:.2f} | Train F1: {train_scores[2]:.4f} | Train AUPRC: {train_scores[3]:.2f} || Val. Loss: {valid_loss:.4f} | Val. Acc: {valid_scores[0]*100:.2f}% | Val. AUROC: {valid_scores[1]:.2f} | Val. F1: {valid_scores[2]:.4f} | Val. AUPRC: {valid_scores[3]:.2f}')
+            print(f'Epoch {epoch+1:03d}: | Train Loss: {train_loss:.4f} | Train Acc: {train_scores[0]*100:.2f}% | Train Precision: {train_scores[4]:.4f} | Train Recall: {train_scores[5]:.4f} || Valid Loss: {valid_loss:.4f} | Valid Acc: {valid_scores[0]*100:.2f}% | Valid Precision: {valid_scores[4]:.4f} | Valid Recall: {valid_scores[5]:.4f}')
         
-        test_loss, test_scores = evaluate(model, device, test_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score], checkpoint='checkpoint.pt')
-        print(f'Test Loss: {test_loss:.4f} | Test Acc: {test_scores[0]*100:.2f}% | Test AUROC: {test_scores[1]:.2f} | Test F1: {test_scores[2]:.4f} | Test AUPRC: {test_scores[3]:.2f}')
+        test_loss, test_scores = evaluate(model, device, test_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score], checkpoint='checkpoint.pt')
+#         print(f'Test Loss: {test_loss:.4f} | Test Acc: {test_scores[0]*100:.2f}% | Test AUROC: {test_scores[1]:.2f} | Test F1: {test_scores[2]:.4f} | Test AUPRC: {test_scores[3]:.2f}')
+        print(f'Test Loss: {test_loss:.4f} | Test Acc: {test_scores[0]*100:.2f}% | Test Precision: {test_scores[4]:.4f} | Test Recall: {test_scores[5]:.4f}')
     
     elif args.train_mode == 'sup_con':
         pass
