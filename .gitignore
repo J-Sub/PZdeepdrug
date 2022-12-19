@@ -2,6 +2,6 @@ MSI/data/processed/
 MSI/.ipynb_checkpoints/
 MSI/__pycache__/
 MSI/checkpoint.pt
-data/
+data/twosides.csv
 temp.ipynb
 MSI/wandb/
