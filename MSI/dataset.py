@@ -11,33 +11,31 @@ from pathlib import Path
 from torch.utils.data import Dataset, DataLoader
 
 class CombinationDataset(Dataset):
-    def __init__(self, database='DCDB', neg_ratio=1, duplicate=False, use_ddi=False, ddi_dataset=None, seed=42, transform=None):
+    def __init__(self, database='C_DCDB', embeddingf='node2vec', neg_ratio=1, duplicate=False, neg_dataset='random', seed=42, transform=None):
         '''
         args
             - database: str, default='C_DCDB' ['C_DCDB', 'DCDB', 'DC_combined']
             - neg_ratio: int, default=1
             - duplicate: bool, default=False (if True, duplicate each samples) -> [a, b] & [b, a]
-            - use_ddi: bool, default=False (if True, use ddi dataset)
-            - ddi_dataset: str, default=None (if use_ddi is True, choose ddi dataset) ['DB', 'TWOSIDES']
+            - neg_dataset: str, default='random' ['random', 'TWOSIDES']
             - seed: int, default=42
         '''
         if (database != 'DCDB') & (database != 'C_DCDB') & (database != 'DC_combined'):
             raise ValueError('database must be DCDB or C_DCDB or DC_combined')
         if neg_ratio < 1:
             raise ValueError('neg_ratio must be greater than 1')
-        if use_ddi:
-            if (ddi_dataset != 'DB') & (ddi_dataset != 'TWOSIDES'):
-                raise ValueError('ddi_dataset must be DB or TWOSIDES')
+        if (neg_dataset != 'random') & (neg_dataset != 'TWOSIDES'):
+            raise ValueError('neg_dataset must be either random or TWOSIDES')
         
         self.database = database
+        self.embeddingf = embeddingf
         self.neg_ratio = neg_ratio
         self.transform = transform
         self.duplicate = duplicate
-        self.use_ddi = use_ddi
-        self.ddi_dataset = ddi_dataset
+        self.neg_dataset = neg_dataset
         self.seed = seed
 
-        self.data_path = Path('data/processed')/f'{database}_neg{neg_ratio}_dup{int(duplicate)}_ddi{int(use_ddi)}_{ddi_dataset}_seed{seed}.pt'
+        self.data_path = Path('data/processed')/f'{database}_embf({embeddingf})_neg({neg_dataset}_{neg_ratio})_dup({int(duplicate)})_seed{seed}.pt'
         if self.data_path.exists():
             print(f'{self.data_path} already exists in processed/ directory.')
         else:
@@ -68,7 +66,7 @@ class CombinationDataset(Dataset):
     def _create_dataset(self):
         dataloader = LoadData()
         # Get embedding
-        with open('data/embedding/embeddings_node2vec_msi_seed0.pkl', 'rb') as f:
+        with open(f'data/embedding/embeddings_{self.embeddingf}_msi_seed0.pkl', 'rb') as f:
             embedding_dict = pickle.load(f)
         # drug dictionary
         drug_id2name, drug_name2id = dataloader.get_dict(type='drug')
@@ -87,21 +85,7 @@ class CombinationDataset(Dataset):
                 dataset_list.append([torch.tensor(comb_embedding2, dtype=torch.float), torch.tensor(1, dtype=torch.long)])
                 
         # negative samples
-        if self.use_ddi:
-            neg_df = pd.read_csv(f'data/labels/{self.ddi_dataset}_DDI_msi.tsv', sep='\t')
-            if len(neg_df) < len(pos_df) * self.neg_ratio:
-                raise ValueError('Not enough negative samples')
-            
-            neg_df = neg_df.sample(n=len(pos_df) * self.neg_ratio, random_state=self.seed)
-            for i in range(len(neg_df)):
-                drug1_id = neg_df.iloc[i, 0]
-                drug2_id = neg_df.iloc[i, 1]
-                comb_embedding = np.concatenate([embedding_dict[drug1_id], embedding_dict[drug2_id]])
-                dataset_list.append([torch.tensor(comb_embedding, dtype=torch.float), torch.tensor(0, dtype=torch.long)])
-                if self.duplicate:
-                    comb_embedding2 = np.concatenate([embedding_dict[drug2_id], embedding_dict[drug1_id]])
-                    dataset_list.append([torch.tensor(comb_embedding2, dtype=torch.float), torch.tensor(0, dtype=torch.long)])
-        else:
+        if self.neg_dataset == 'random':
             count = 0
             while count < len(pos_df) * self.neg_ratio:
             # while len(dataset_list) < len(pos_df) * (1 + self.neg_ratio):
@@ -119,4 +103,18 @@ class CombinationDataset(Dataset):
                     comb_embedding2 = np.concatenate([embedding_dict[drug2_id], embedding_dict[drug1_id]])
                     dataset_list.append([torch.tensor(comb_embedding2, dtype=torch.float), torch.tensor(0, dtype=torch.long)])
                 count += 1
+        else:
+            neg_df = pd.read_csv(f'data/labels/{self.neg_dataset}_DDI_msi.tsv', sep='\t')
+            if len(neg_df) < len(pos_df) * self.neg_ratio:
+                raise ValueError('Not enough negative samples')
+            
+            neg_df = neg_df.sample(n=len(pos_df) * self.neg_ratio, random_state=self.seed)
+            for i in range(len(neg_df)):
+                drug1_id = neg_df.iloc[i, 0]
+                drug2_id = neg_df.iloc[i, 1]
+                comb_embedding = np.concatenate([embedding_dict[drug1_id], embedding_dict[drug2_id]])
+                dataset_list.append([torch.tensor(comb_embedding, dtype=torch.float), torch.tensor(0, dtype=torch.long)])
+                if self.duplicate:
+                    comb_embedding2 = np.concatenate([embedding_dict[drug2_id], embedding_dict[drug1_id]])
+                    dataset_list.append([torch.tensor(comb_embedding2, dtype=torch.float), torch.tensor(0, dtype=torch.long)])
         return dataset_list

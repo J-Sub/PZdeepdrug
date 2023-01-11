@@ -37,3 +37,29 @@ class SupConLoss(nn.Module):
 
         return sup_con_loss
         
+
+# class ContrastiveLoss(nn.Module):
+#     def __init__(self, temperature=0.07):
+#         super(ContrastiveLoss, self).__init__()
+#         self.temperature = temperature
+    
+#     def forward(self, drug1, drug2, targets):
+#         '''
+#         Args:
+#             drug1: torch.Tensor, shape [batch_size, projection_dim]
+#             drug2: torch.Tensor, shape [batch_size, projection_dim]
+#             targets: torch.Tensor, shape [batch_size]
+#         '''
+#         device = torch.device('cuda') if drug1.is_cuda else torch.device('cpu')
+#         dot_product_tempered = torch.mm(drug1, drug2.T) / self.temperature # [batch_size, batch_size]
+
+#         # minus max for numerical stability with exponential
+#         exp_dot_tempered = (
+#             torch.exp(dot_product_tempered - torch.max(dot_product_tempered, dim=1, keepdim=True)[0]) + 1e-5
+#         ) # [batch_size, batch_size]
+
+#         mask_similar_class = (targets.unsqueeze(1).repeat(1, targets.shape[0]) == targets).to(device) # [batch_size, batch_size]
+#         mask_anchor_out = (1 - torch.eye(targets.shape[0])).to(device) # [batch_size, batch_size] (1 - I)
+#         mask_combined = mask_similar_class * mask_anchor_out # [batch_size, batch_size]
+
+#         log_

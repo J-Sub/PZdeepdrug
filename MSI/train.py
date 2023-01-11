@@ -25,24 +25,22 @@ import wandb
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--database', type=str, default='C_DCDB')
+    parser.add_argument('--database', type=str, default='C_DCDB', choices=['C_DCDB', 'DCDB', 'DC_combined'])
+    parser.add_argument('--embeddingf', type=str, default='node2vec', choices=['node2vec', 'edge2vec', 'res2vec_homo', 'res2vec_hetero'])
+    parser.add_argument('--neg_dataset', type=str, default='random', choices=['random', 'TWOSIDES'])
     parser.add_argument('--neg_ratio', type=int, default=1)
     parser.add_argument('--duplicate', type=bool, default=False)
-    parser.add_argument('--use_ddi', type=bool, default=False)
-    parser.add_argument('--ddi_dataset', type=str, default=None)
-    parser.add_argument('--comb_type', type=str, default='cat') # cat, sum, diff, sumdiff
+    parser.add_argument('--comb_type', type=str, default='cat', choices=['cat', 'sum', 'diff', 'sumdiff', 'cosine'])
     parser.add_argument('--batch_size', type=int, default=32)
-    parser.add_argument('--epochs', type=int, default=50)
-    parser.add_argument('--lr', type=float, default=1e-3) # 
+    parser.add_argument('--epochs', type=int, default=100)
+    parser.add_argument('--lr', type=float, default=1e-4)
     parser.add_argument('--weight_decay', type=float, default=1e-5)
     parser.add_argument('--seed', type=int, default=42)
     parser.add_argument('--device', type=int, default=0)
-    parser.add_argument('--train_mode', type=str, default='cross_entropy')
-    parser.add_argument('--run_name', type=str, default='test_run')
+#     parser.add_argument('--run_name', type=str, default='test_run')
     parser.add_argument('--group', type=str, default=None)
     args = parser.parse_args()
     return args
-
 
 def seed_everything(seed):
     random.seed(seed)
@@ -54,22 +52,21 @@ def seed_everything(seed):
     torch.backends.cudnn.benchmark = True
 
 
+# def train_sup_con(model, device, train_loader, criterion, optimizer):
+#     model.train()
+#     train_loss = 0
 
-def train_sup_con(model, device, train_loader, criterion, optimizer):
-    model.train()
-    train_loss = 0
+#     for batch_idx, (data, target) in enumerate(train_loader):
+#         data, target = data.to(device), target.to(device)
+#         optimizer.zero_grad()
+#         projections = model.forward_contrastive(data)
+#         loss = criterion(projections, target)
+#         loss.backward()
+#         optimizer.step()
 
-    for batch_idx, (data, target) in enumerate(train_loader):
-        data, target = data.to(device), target.to(device)
-        optimizer.zero_grad()
-        projections = model.forward_contrastive(data)
-        loss = criterion(projections, target)
-        loss.backward()
-        optimizer.step()
-
-        train_loss += loss.item()
+#         train_loss += loss.item()
     
-    return train_loss / (batch_idx + 1)
+#     return train_loss / (batch_idx + 1)
 
 def train_cross_entropy(model, device, train_loader, criterion, optimizer, metric_list=[accuracy_score]):
 
@@ -130,15 +127,16 @@ def evaluate(model, device, loader, criterion, metric_list=[accuracy_score], che
 
 def main():
     args = parse_args()
-    wandb.init(project="PharmGen_drug_comb", group=args.group)
+    group = f"{args.database}_{args.embeddingf}_neg({args.neg_dataset})_comb({args.comb_type})"
+    wandb.init(project="PharmGen_drug_comb", group=group, entity='pzdeepdrug')
     wandb.config.update(args)
-    wandb.run.name = args.run_name
+    wandb.run.name = f"{args.database}_{args.embeddingf}_neg({args.neg_dataset})_comb({args.comb_type})_seed{args.seed}"
     wandb.run.save()
     print(args)
 
     seed_everything(args.seed)
 
-    dataset = CombinationDataset(database=args.database, neg_ratio=args.neg_ratio, duplicate=args.duplicate, use_ddi=args.use_ddi, ddi_dataset=args.ddi_dataset, seed=args.seed)
+    dataset = CombinationDataset(database=args.database, embeddingf=args.embeddingf, neg_ratio=args.neg_ratio, duplicate=args.duplicate, neg_dataset=args.neg_dataset, seed=args.seed)
     train_dataset, valid_dataset, test_dataset = dataset['train'], dataset['valid'], dataset['test']
     print(len(train_dataset), len(valid_dataset), len(test_dataset))
 
@@ -154,84 +152,42 @@ def main():
     LR = args.lr
     device = torch.device(f'cuda:{args.device}' if torch.cuda.is_available() else 'cpu')
 
-    if args.train_mode == 'cross_entropy':
-        print('Train with cross entropy')
-        model = CombNet(input_dim, hidden_dim, output_dim, comb_type=args.comb_type)
-        model.to(device)
-        criterion = nn.BCEWithLogitsLoss()
-        optimizer = torch.optim.Adam(model.parameters(), lr=LR, weight_decay=args.weight_decay)
+    print('Train with cross entropy')
+    model = CombNet(input_dim, hidden_dim, output_dim, comb_type=args.comb_type)
+    model.to(device)
+    criterion = nn.BCEWithLogitsLoss()
+    optimizer = torch.optim.Adam(model.parameters(), lr=LR, weight_decay=args.weight_decay)
 
-        best_valid_loss = float('inf')
-        for epoch in range(EPOCHS):
-            train_loss, train_scores = train_cross_entropy(model, device, train_loader, criterion, optimizer,
-                                                           metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score])
-            valid_loss, valid_scores = evaluate(model, device, valid_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score])
-            if valid_loss < best_valid_loss:
-                best_valid_loss = valid_loss
-                torch.save(model.state_dict(), 'checkpoint.pt')
-            wandb.log({
-                'train_loss': train_loss,
-                'valid_loss': valid_loss,
-                'train_accuracy': train_scores[0],
-                'valid_accuracy': valid_scores[0],
-                'train_auroc': train_scores[1],
-                'valid_auroc': valid_scores[1],
-                'train_f1': train_scores[2],
-                'valid_f1': valid_scores[2],
-                'train_auprc': train_scores[3],
-                'valid_auprc': valid_scores[3],
-                'train_precision': train_scores[4],
-                'valid_precision': valid_scores[4],
-                'train_recall': train_scores[5],
-                'valid_recall': valid_scores[5],
-            })
-#             print(f'Epoch {epoch+1:03d}: | Train Loss: {train_loss:.4f} | Train Acc: {train_scores[0]*100:.2f}% | Train AUROC: {train_scores[1]:.2f} | Train F1: {train_scores[2]:.4f} | Train AUPRC: {train_scores[3]:.2f} || Val. Loss: {valid_loss:.4f} | Val. Acc: {valid_scores[0]*100:.2f}% | Val. AUROC: {valid_scores[1]:.2f} | Val. F1: {valid_scores[2]:.4f} | Val. AUPRC: {valid_scores[3]:.2f}')
-            print(f'Epoch {epoch+1:03d}: | Train Loss: {train_loss:.4f} | Train Acc: {train_scores[0]*100:.2f}% | Train Precision: {train_scores[4]:.4f} | Train Recall: {train_scores[5]:.4f} || Valid Loss: {valid_loss:.4f} | Valid Acc: {valid_scores[0]*100:.2f}% | Valid Precision: {valid_scores[4]:.4f} | Valid Recall: {valid_scores[5]:.4f}')
-        
-        test_loss, test_scores = evaluate(model, device, test_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score], checkpoint='checkpoint.pt')
-#         print(f'Test Loss: {test_loss:.4f} | Test Acc: {test_scores[0]*100:.2f}% | Test AUROC: {test_scores[1]:.2f} | Test F1: {test_scores[2]:.4f} | Test AUPRC: {test_scores[3]:.2f}')
-        print(f'Test Loss: {test_loss:.4f} | Test Acc: {test_scores[0]*100:.2f}% | Test Precision: {test_scores[4]:.4f} | Test Recall: {test_scores[5]:.4f}')
+    best_valid_loss = float('inf')
+    for epoch in range(EPOCHS):
+        train_loss, train_scores = train_cross_entropy(model, device, train_loader, criterion, optimizer,
+                                                       metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score])
+        valid_loss, valid_scores = evaluate(model, device, valid_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score])
+        if valid_loss < best_valid_loss:
+            best_valid_loss = valid_loss
+            torch.save(model.state_dict(), 'checkpoint.pt')
+        wandb.log({
+            'train_loss': train_loss,
+            'valid_loss': valid_loss,
+            'train_accuracy': train_scores[0],
+            'valid_accuracy': valid_scores[0],
+            'train_auroc': train_scores[1],
+            'valid_auroc': valid_scores[1],
+            'train_f1': train_scores[2],
+            'valid_f1': valid_scores[2],
+            'train_auprc': train_scores[3],
+            'valid_auprc': valid_scores[3],
+            'train_precision': train_scores[4],
+            'valid_precision': valid_scores[4],
+            'train_recall': train_scores[5],
+            'valid_recall': valid_scores[5],
+        })
+        print(f'Epoch {epoch+1:03d}: | Train Loss: {train_loss:.4f} | Train Acc: {train_scores[0]*100:.2f}% | Train Precision: {train_scores[4]:.4f} | Train Recall: {train_scores[5]:.4f} || Valid Loss: {valid_loss:.4f} | Valid Acc: {valid_scores[0]*100:.2f}% | Valid Precision: {valid_scores[4]:.4f} | Valid Recall: {valid_scores[5]:.4f}')
+
+    test_loss, test_scores = evaluate(model, device, test_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score], checkpoint='checkpoint.pt')
     
-    elif args.train_mode == 'sup_con':
-        pass
-        # print('Supervised Contrastive pretraining...')
-        # input_dim = dataset[0][0].shape[0]
-        # hidden_dim = input_dim
-        # output_dim = 1
-        # model = CombNetSupCon(input_dim, hidden_dim, output_dim, contrastive_dim=128)
-
-        # CONT_EPOCHS = 300
-        # CONT_LR = 0.001
-        # device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        # model.to(device)
-        # criterion = SupConLoss(temperature=0.1).to(device)
-        # optimizer = torch.optim.Adam(model.parameters(), lr=CONT_LR, weight_decay=1e-5)
-
-        # for epoch in range(CONT_EPOCHS):
-        #     train_loss = train_sup_con(model, device, train_loader, criterion, optimizer)
-        #     if epoch % 10 == 0:
-        #         torch.save(model.state_dict(), 'sup_con_checkpoint.pt')
-        #     print(f'Epoch {epoch+1:03d}: | Train Loss: {train_loss:.4f}')
-        
-        # print("Cross Entropy training...")
-        # CE_EPOCHS = 100
-        # CE_LR = 0.001
-        # model.load_state_dict(torch.load('sup_con_checkpoint.pt'))
-        # model.freeze_projection()
-        # criterion = nn.BCEWithLogitsLoss()
-        # optimizer = torch.optim.Adam(model.parameters(), lr=CE_LR, weight_decay=1e-5)
-
-        # best_valid_loss = float('inf')
-        # for epoch in range(CE_EPOCHS):
-        #     train_loss, train_scores = train_cross_entropy(model, device, train_loader, criterion, optimizer, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score])
-        #     valid_loss, valid_scores = evaluate(model, device, valid_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score])
-        #     if valid_loss < best_valid_loss:
-        #         best_valid_loss = valid_loss
-        #         torch.save(model.state_dict(), 'checkpoint.pt')
-        #     print(f'Epoch {epoch+1:03d}: | Train Loss: {train_loss:.4f} | Train Acc: {train_scores[0]*100:.2f}% | Train AUROC: {train_scores[1]:.2f} | Train F1: {train_scores[2]:.4f} | Train AUPRC: {train_scores[3]:.2f} || Val. Loss: {valid_loss:.4f} | Val. Acc: {valid_scores[0]*100:.2f}% | Val. AUROC: {valid_scores[1]:.2f} | Val. F1: {valid_scores[2]:.4f} | Val. AUPRC: {valid_scores[3]:.2f}')
-        
-        # test_loss, test_scores = evaluate(model, device, test_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score], checkpoint='checkpoint.pt')
-        # print(f'Test Loss: {test_loss:.4f} | Test Acc: {test_scores[0]*100:.2f}% | Test AUROC: {test_scores[1]:.2f} | Test F1: {test_scores[2]:.4f} | Test AUPRC: {test_scores[3]:.2f}')
+    print(f'Test Loss: {test_loss:.4f} | Test Acc: {test_scores[0]*100:.2f}% | Test Precision: {test_scores[4]:.4f} | Test Recall: {test_scores[5]:.4f}')
+    
 
 
 if __name__ == '__main__':
