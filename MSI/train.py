@@ -26,7 +26,7 @@ import wandb
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--database', type=str, default='C_DCDB', choices=['C_DCDB', 'DCDB', 'DC_combined'])
-    parser.add_argument('--embeddingf', type=str, default='node2vec', choices=['node2vec', 'edge2vec', 'res2vec_homo', 'res2vec_hetero'])
+    parser.add_argument('--embeddingf', type=str, default='node2vec', choices=['node2vec', 'edge2vec', 'res2vec_homo', 'res2vec_hetero', 'DREAMwalk'])
     parser.add_argument('--neg_dataset', type=str, default='random', choices=['random', 'TWOSIDES'])
     parser.add_argument('--neg_ratio', type=int, default=1)
     parser.add_argument('--duplicate', type=bool, default=False)
@@ -51,6 +51,52 @@ def seed_everything(seed):
     torch.backends.cudnn.deterministic = True
     torch.backends.cudnn.benchmark = True
 
+
+class EarlyStopping:
+    def __init__(self, patience=10, verbose=False, delta=0, path='checkpoint.pt'):
+        '''
+        Args:
+            patience (int): How long to wait after last time validation loss improved.
+                            Default: 7
+            verbose (bool): If True, prints a message for each validation loss improvement. 
+                            Default: False
+            delta (float): Minimum change in the monitored quantity to qualify as an improvement.
+                            Default: 0
+            path (str): Path for the checkpoint to be saved to.
+                            Default: 'checkpoint.pt'
+        '''
+        self.patience = patience
+        self.verbose = verbose
+        self.counter = 0
+        self.best_score = None
+        self.early_stop = False
+        self.val_loss_min = np.Inf
+        self.delta = delta
+        self.path = path
+    
+    def __call__(self, val_loss, model):
+        
+        score = -val_loss
+        
+        if self.best_score is None:
+            self.best_score = score
+            self.save_checkpoint(val_loss, model)
+        elif score < self.best_score + self.delta:
+            self.counter += 1
+            print(f'EarlyStopping counter: {self.counter} out of {self.patience}')
+            if self.counter >= self.patience:
+                self.early_stop = True
+        else:
+            self.best_score = score
+            self.save_checkpoint(val_loss, model)
+            self.counter = 0
+    
+    def save_checkpoint(self, val_loss, model):
+        '''Saves model when validation loss decrease.'''
+        if self.verbose:
+            print(f'Validation loss decreased ({self.val_loss_min:.6f} --> {val_loss:.6f}).  Saving model ...')
+        torch.save(model.state_dict(), self.path)
+        self.val_loss_min = val_loss
 
 # def train_sup_con(model, device, train_loader, criterion, optimizer):
 #     model.train()
@@ -127,7 +173,7 @@ def evaluate(model, device, loader, criterion, metric_list=[accuracy_score], che
 
 def main():
     args = parse_args()
-    group = f"{args.database}_{args.embeddingf}_neg({args.neg_dataset})_comb({args.comb_type})"
+    group = f"{args.database}_{args.embeddingf}_neg({args.neg_dataset})_comb({args.comb_type})" #
     wandb.init(project="PharmGen_drug_comb", group=group, entity='pzdeepdrug')
     wandb.config.update(args)
     wandb.run.name = f"{args.database}_{args.embeddingf}_neg({args.neg_dataset})_comb({args.comb_type})_seed{args.seed}"
@@ -159,13 +205,17 @@ def main():
     optimizer = torch.optim.Adam(model.parameters(), lr=LR, weight_decay=args.weight_decay)
 
     best_valid_loss = float('inf')
+
+    early_stopping = EarlyStopping(patience=10, verbose=True)
+
     for epoch in range(EPOCHS):
         train_loss, train_scores = train_cross_entropy(model, device, train_loader, criterion, optimizer,
                                                        metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score])
         valid_loss, valid_scores = evaluate(model, device, valid_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score])
-        if valid_loss < best_valid_loss:
-            best_valid_loss = valid_loss
-            torch.save(model.state_dict(), 'checkpoint.pt')
+        # if valid_loss < best_valid_loss:
+        #     best_valid_loss = valid_loss
+        #     torch.save(model.state_dict(), 'checkpoint.pt')
+        
         wandb.log({
             'train_loss': train_loss,
             'valid_loss': valid_loss,
@@ -183,6 +233,10 @@ def main():
             'valid_recall': valid_scores[5],
         })
         print(f'Epoch {epoch+1:03d}: | Train Loss: {train_loss:.4f} | Train Acc: {train_scores[0]*100:.2f}% | Train Precision: {train_scores[4]:.4f} | Train Recall: {train_scores[5]:.4f} || Valid Loss: {valid_loss:.4f} | Valid Acc: {valid_scores[0]*100:.2f}% | Valid Precision: {valid_scores[4]:.4f} | Valid Recall: {valid_scores[5]:.4f}')
+        early_stopping(valid_loss, model)
+        if early_stopping.early_stop:
+            print("Early stopping")
+            break
 
     test_loss, test_scores = evaluate(model, device, test_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score], checkpoint='checkpoint.pt')
     
