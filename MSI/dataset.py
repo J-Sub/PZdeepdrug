@@ -15,6 +15,7 @@ class CombinationDataset(Dataset):
         '''
         args
             - database: str, default='C_DCDB' ['C_DCDB', 'DCDB', 'DC_combined']
+            - embeddingf: str, default='node2vec' ['node2vec', 'edge2vec', 'res2vec_homo', 'res2vec_hetero', 'DREAMwalk']
             - neg_ratio: int, default=1
             - duplicate: bool, default=False (if True, duplicate each samples) -> [a, b] & [b, a]
             - neg_dataset: str, default='random' ['random', 'TWOSIDES']
