@@ -4,7 +4,7 @@ import torch.nn.functional as F
 import numpy as np
 
 class CombNet(nn.Module):
-    def __init__(self, input_dim, hidden_dim, output_dim, comb_type='cat', dropout=0.1):
+    def __init__(self, input_dim, hidden_dim, output_dim, comb_type='sum', dropout=0.1):
         super(CombNet, self).__init__()
         self.input_dim = input_dim # dimension of concatenated drug embeddings
         if (comb_type != 'cat') & (comb_type != 'sum') & (comb_type != 'diff') & (comb_type != 'sumdiff') & (comb_type != 'cosine') & (comb_type != "euclidean"):
@@ -17,10 +17,6 @@ class CombNet(nn.Module):
             nn.Dropout(dropout),
         )
         if comb_type == 'cosine':
-            # # self.fc = nn.Sequential(
-            # #     nn.Linear(1, output_dim)
-            # # )
-            # raise NotImplementedError('cosine similarity is not implemented yet.')
             self.metric = nn.CosineSimilarity(dim=1, eps=1e-6)
         else:
             dual_dim = hidden_dim if (comb_type == 'sum' or comb_type == 'diff') else hidden_dim * 2
@@ -61,6 +57,63 @@ class CombNet(nn.Module):
             elif self.comb_type == 'sumdiff': # [(drug1) + (drug2), (drug1) - (drug2)]로 concat
                 comb = torch.cat([drug1 + drug2, torch.abs(drug1 - drug2)], dim=1) # (batch_size, hidden_dim * 2)
             return self.fc(comb) # (batch_size, output_dim)
+
+class CombNet2(nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim, comb_type='sum', dropout=0.1):
+        super(CombNet, self).__init__()
+        self.input_dim = input_dim # dimension of concatenated drug embeddings
+        if (comb_type != 'cat') & (comb_type != 'sum') & (comb_type != 'diff') & (comb_type != 'sumdiff') & (comb_type != 'cosine') & (comb_type != "euclidean"):
+            raise ValueError('comb_type must be cat, sum, diff, sumdiff, or cosine.')
+        self.comb_type = comb_type
+        self.lt = nn.Sequential(
+            nn.Linear(input_dim // 2, hidden_dim),
+            nn.BatchNorm1d(hidden_dim),
+            nn.ReLU(),
+            nn.Dropout(dropout),
+        )
+        if comb_type == 'cosine':
+            self.metric = nn.CosineSimilarity(dim=1, eps=1e-6)
+        else:
+            dual_dim = hidden_dim if (comb_type == 'sum' or comb_type == 'diff') else hidden_dim * 2
+            self.fc1 = nn.Sequential(
+                nn.Linear(dual_dim, hidden_dim),
+                nn.BatchNorm1d(hidden_dim),
+                nn.ReLU(),
+                nn.Dropout(dropout),
+                # nn.Linear(hidden_dim, hidden_dim),
+                # nn.BatchNorm1d(hidden_dim),
+                # nn.ReLU(),
+                # nn.Dropout(dropout),
+                nn.Linear(hidden_dim, 2) # for embedding vector visualization
+            )
+            self.fc2 = nn.Sequential(
+                nn.Linear(2, output_dim) # for BCEWithLogitsLoss
+            )
+
+    def forward(self, data):
+        drug1, drug2 = data[:, :self.input_dim//2], data[:, self.input_dim//2:] # drug1과 drug2를 분리 # (batch_size * (input_dim // 2))
+        drug1, drug2 = self.lt(drug1), self.lt(drug2)
+        if self.comb_type == 'cosine':
+            drug1 = F.normalize(drug1, dim=1)
+            drug2 = F.normalize(drug2, dim=1)
+            # define cosine similarity
+            cos_sim = self.metric(drug1, drug2).unsqueeze(1) # (batch_size, 1), scale: -1 ~ 1
+            # scale cos_sim to 0 ~ 1
+            angular_dist = torch.arccos(cos_sim) / np.pi # (batch_size, 1), scale: 0 ~ 1
+            return angular_dist
+        else:
+            if self.comb_type == 'cat': # [(drug1), (drug2)]로 concat
+                comb = torch.cat([drug1, drug2], dim=1) # (batch_size, hidden_dim * 2)
+            elif self.comb_type == 'sum': # [(drug1) + (drug2)]
+                comb = drug1 + drug2 # (batch_size, hidden_dim)
+            elif self.comb_type == 'diff': # [(drug1) - (drug2)]
+                comb = torch.abs(drug1 - drug2) # (batch_size, hidden_dim)
+            elif self.comb_type == 'sumdiff': # [(drug1) + (drug2), (drug1) - (drug2)]로 concat
+                comb = torch.cat([drug1 + drug2, torch.abs(drug1 - drug2)], dim=1) # (batch_size, hidden_dim * 2)
+            vis = self.fc1(comb)
+            out = self.fc2(vis)
+            return vis, out # (batch_size, output_dim)
+
 
 class CombNetSupCon(nn.Module):
     def __init__(self, input_dim, hidden_dim, output_dim, contrastive_dim, dropout=0.1):

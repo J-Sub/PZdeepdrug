@@ -39,6 +39,7 @@ def parse_args():
     parser.add_argument('--device', type=int, default=0)
 #     parser.add_argument('--run_name', type=str, default='test_run')
     parser.add_argument('--group', type=str, default=None)
+    parser.add_argument('--ckpt_name', type=str, default='checkpoint.pt')
     args = parser.parse_args()
     return args
 
@@ -170,13 +171,12 @@ def evaluate(model, device, loader, criterion, metric_list=[accuracy_score], che
     return eval_loss / (batch_idx + 1), scores
 
 
-
 def main():
     args = parse_args()
-    group = f"{args.database}_{args.embeddingf}_neg({args.neg_dataset})_comb({args.comb_type})" #
+    group = f"{args.database}_{args.embeddingf}_neg({args.neg_dataset}_{args.neg_ratio})_comb({args.comb_type})" #
     wandb.init(project="PharmGen_drug_comb", group=group, entity='pzdeepdrug')
     wandb.config.update(args)
-    wandb.run.name = f"{args.database}_{args.embeddingf}_neg({args.neg_dataset})_comb({args.comb_type})_seed{args.seed}"
+    wandb.run.name = f"{args.database}_{args.embeddingf}_neg({args.neg_dataset}_{args.neg_ratio})_comb({args.comb_type})_seed{args.seed}"
     wandb.run.save()
     print(args)
 
@@ -206,7 +206,7 @@ def main():
 
     best_valid_loss = float('inf')
 
-    early_stopping = EarlyStopping(patience=10, verbose=True)
+    early_stopping = EarlyStopping(patience=10, verbose=True, path=args.ckpt_name)
 
     for epoch in range(EPOCHS):
         train_loss, train_scores = train_cross_entropy(model, device, train_loader, criterion, optimizer,
@@ -238,8 +238,16 @@ def main():
             print("Early stopping")
             break
 
-    test_loss, test_scores = evaluate(model, device, test_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score], checkpoint='checkpoint.pt')
-    
+    test_loss, test_scores = evaluate(model, device, test_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score], checkpoint=args.ckpt_name)
+    wandb.log({
+        'test_loss': test_loss,
+        'test_accuracy': test_scores[0],
+        'test_auroc': test_scores[1],
+        'test_f1': test_scores[2],
+        'test_auprc': test_scores[3],
+        'test_precision': test_scores[4],
+        'test_recall': test_scores[5],
+    })
     print(f'Test Loss: {test_loss:.4f} | Test Acc: {test_scores[0]*100:.2f}% | Test Precision: {test_scores[4]:.4f} | Test Recall: {test_scores[5]:.4f}')
     
 

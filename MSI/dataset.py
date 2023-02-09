@@ -58,8 +58,7 @@ class CombinationDataset(Dataset):
         test_size = len(dataset_list) - train_size - valid_size
         torch.manual_seed(0)
         train_dataset, valid_dataset, test_dataset = torch.utils.data.random_split(dataset_list, [train_size, valid_size, test_size])
-        dataset_dict = {'train': train_dataset, 'valid': valid_dataset, 'test': test_dataset
-        }
+        dataset_dict = {'train': train_dataset, 'valid': valid_dataset, 'test': test_dataset, 'whole': dataset_list}
 
         print(f'Saving dataset...')
         torch.save(dataset_dict, self.data_path)
