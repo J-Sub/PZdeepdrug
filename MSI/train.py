@@ -15,9 +15,10 @@ from sklearn.metrics import accuracy_score, recall_score, precision_score, f1_sc
 
 import pickle
 from load_msi_data import LoadData
-from model import CombNet, CombNetSupCon
+from model import CombNet, CombNetSupCon, CombNetVis
 from dataset import CombinationDataset
 from loss import SupConLoss
+from center_loss import CenterLoss
 
 import argparse
 
@@ -30,7 +31,7 @@ def parse_args():
     parser.add_argument('--neg_dataset', type=str, default='random', choices=['random', 'TWOSIDES'])
     parser.add_argument('--neg_ratio', type=int, default=1)
     parser.add_argument('--duplicate', type=bool, default=False)
-    parser.add_argument('--comb_type', type=str, default='cat', choices=['cat', 'sum', 'diff', 'sumdiff', 'cosine'])
+    parser.add_argument('--comb_type', type=str, default='cat', choices=['cat', 'sum', 'diff', 'sumdiff', 'cosine', 'bliss'])
     parser.add_argument('--batch_size', type=int, default=32)
     parser.add_argument('--epochs', type=int, default=100)
     parser.add_argument('--lr', type=float, default=1e-4)
@@ -40,6 +41,8 @@ def parse_args():
 #     parser.add_argument('--run_name', type=str, default='test_run')
     parser.add_argument('--group', type=str, default=None)
     parser.add_argument('--ckpt_name', type=str, default='checkpoint.pt')
+    parser.add_argument('--train_mode', type=str, default='ce', choices=['ce', 'center'])
+    parser.add_argument('--alpha', type=float, default=0.5) # weight for center loss
     args = parser.parse_args()
     return args
 
@@ -115,8 +118,10 @@ class EarlyStopping:
     
 #     return train_loss / (batch_idx + 1)
 
-def train_cross_entropy(model, device, train_loader, criterion, optimizer, metric_list=[accuracy_score]):
-
+def train_ce(model, device, train_loader, criterion, optimizer, metric_list=[accuracy_score]):
+    '''
+    Cross entropy training
+    '''
     # train
     model.train()
     train_loss = 0
@@ -145,6 +150,40 @@ def train_cross_entropy(model, device, train_loader, criterion, optimizer, metri
     
     return train_loss / (batch_idx + 1), scores
 
+def train_center(model, device, train_loader, ce_loss, center_loss, optimizer, args, metric_list=[accuracy_score]):
+    '''
+    Center loss training
+    '''
+    # train
+    model.train()
+    train_loss = 0
+
+    target_list = []
+    pred_list = []
+    for batch_idx, (data, target) in enumerate(train_loader):
+        data, target = data.to(device), target.float().to(device)
+        optimizer.zero_grad()
+        vis, output = model(data)
+        output = output.view(-1)
+        loss = ce_loss(output, target) + center_loss(vis, target) * args.alpha
+        loss.backward()
+        for param in center_loss.parameters():
+            param.grad.data *= (0.5 / (args.alpha * args.lr))
+        optimizer.step()
+        train_loss += loss.item()
+        pred_list.append(torch.sigmoid(output).detach().cpu().numpy())
+        target_list.append(target.long().detach().cpu().numpy())
+
+    # metric
+    scores = []
+    for metric in metric_list:
+        if (metric == roc_auc_score) or (metric == average_precision_score):
+            scores.append(metric(np.concatenate(target_list), np.concatenate(pred_list)))
+        else:
+            scores.append(metric(np.concatenate(target_list), np.concatenate(pred_list).round()))
+    
+    return train_loss / (batch_idx + 1), scores
+
 def evaluate(model, device, loader, criterion, metric_list=[accuracy_score], checkpoint=None):
     # evaluate
     if checkpoint is not None:
@@ -157,7 +196,11 @@ def evaluate(model, device, loader, criterion, metric_list=[accuracy_score], che
     with torch.no_grad():
         for batch_idx, (data, target) in enumerate(loader):
             data, target = data.to(device), target.float().to(device)
-            output = model(data).view(-1)
+            output = model(data)
+            if len(output) > 1: # center loss
+                output = output[1].view(-1)
+            else: # cross entropy
+                output = output.view(-1)
             eval_loss += criterion(output, target).item()
             pred_list.append(torch.sigmoid(output).detach().cpu().numpy())
             target_list.append(target.long().detach().cpu().numpy())
@@ -173,10 +216,10 @@ def evaluate(model, device, loader, criterion, metric_list=[accuracy_score], che
 
 def main():
     args = parse_args()
-    group = f"{args.database}_{args.embeddingf}_neg({args.neg_dataset}_{args.neg_ratio})_comb({args.comb_type})" #
+    group = f"{args.train_mode}_{args.database}_{args.embeddingf}_neg({args.neg_dataset}_{args.neg_ratio})_comb({args.comb_type})" #
     wandb.init(project="PharmGen_drug_comb", group=group, entity='pzdeepdrug')
     wandb.config.update(args)
-    wandb.run.name = f"{args.database}_{args.embeddingf}_neg({args.neg_dataset}_{args.neg_ratio})_comb({args.comb_type})_seed{args.seed}"
+    wandb.run.name = f"{args.train_mode}_{args.database}_{args.embeddingf}_neg({args.neg_dataset}_{args.neg_ratio})_comb({args.comb_type})_seed{args.seed}"
     wandb.run.save()
     print(args)
 
@@ -198,19 +241,30 @@ def main():
     LR = args.lr
     device = torch.device(f'cuda:{args.device}' if torch.cuda.is_available() else 'cpu')
 
-    print('Train with cross entropy')
-    model = CombNet(input_dim, hidden_dim, output_dim, comb_type=args.comb_type)
-    model.to(device)
-    criterion = nn.BCEWithLogitsLoss()
-    optimizer = torch.optim.Adam(model.parameters(), lr=LR, weight_decay=args.weight_decay)
-
-    best_valid_loss = float('inf')
+    if args.train_mode == 'ce':
+        print('Train with cross entropy')
+        model = CombNet(input_dim, hidden_dim, output_dim, comb_type=args.comb_type)
+        model.to(device)
+        criterion = nn.BCEWithLogitsLoss()
+        optimizer = torch.optim.Adam(model.parameters(), lr=LR, weight_decay=args.weight_decay)
+    elif args.train_mode == 'center':
+        print('Train with Center Loss')
+        model = CombNetVis(input_dim, hidden_dim, output_dim, comb_type=args.comb_type)
+        model.to(device)
+        criterion = nn.BCEWithLogitsLoss()
+        center_loss = CenterLoss(num_classes=2, feat_dim=2, use_gpu=True)
+        params = list(model.parameters()) + list(center_loss.parameters())
+        optimizer = torch.optim.Adam(params, lr=LR, weight_decay=args.weight_decay)
 
     early_stopping = EarlyStopping(patience=10, verbose=True, path=args.ckpt_name)
 
     for epoch in range(EPOCHS):
-        train_loss, train_scores = train_cross_entropy(model, device, train_loader, criterion, optimizer,
-                                                       metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score])
+        metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score]
+        if args.train_mode == 'ce':
+            train_loss, train_scores = train_ce(model, device, train_loader, criterion, optimizer, metric_list)
+        elif args.train_mode == 'center':
+            train_loss, train_scores = train_center(model, device, train_loader, criterion, center_loss, optimizer, args, metric_list)
+
         valid_loss, valid_scores = evaluate(model, device, valid_loader, criterion, metric_list=[accuracy_score, roc_auc_score, f1_score, average_precision_score, precision_score, recall_score])
         # if valid_loss < best_valid_loss:
         #     best_valid_loss = valid_loss
